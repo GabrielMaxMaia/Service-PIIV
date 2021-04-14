@@ -3,6 +3,7 @@ package com.example.services.Model;
 import java.time.OffsetDateTime;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,12 +31,12 @@ public class Pedido {
 	private String status;
 	
 	@NotNull
+	@Column(name = "hora_do_pedido")
 	private OffsetDateTime horaDoPedido;
 	
 	@NotNull
 	private Date data;
 	
-	@NotBlank
 	private String observacao;
 	
 	@NotNull

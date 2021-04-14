@@ -15,25 +15,20 @@ public class Mesa {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	
 	@NotNull
 	private int numeracao;
-
 
 	public Long getId() {
 		return id;
 	}
 
-
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-
 	public int getNumeracao() {
 		return numeracao;
 	}
-
 
 	public void setNumeracao(int numeracao) {
 		this.numeracao = numeracao;
@@ -65,7 +60,4 @@ public class Mesa {
 			return false;
 		return true;
 	}
-	
-	
-	
 }

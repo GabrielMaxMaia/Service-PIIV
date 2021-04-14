@@ -1,12 +1,18 @@
 package com.example.services.Model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "usuario")
@@ -16,15 +22,21 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 	
-	@NotBlank
+	@NotNull
 	private String nome;
 	
-	@NotBlank
+	@NotNull
 	@Email
 	private String email;
 	
-	@NotBlank
+	@NotNull
 	private String senha;
+	
+	@ManyToMany(fetch = FetchType.EAGER)						//toda vez que eu buscar os usuario já traz as permissoes dele
+	@JoinTable(name = "usuario_permissao",						//onde vou estar relacionando com a tabela Usuario_Permissao
+	joinColumns = @JoinColumn (name = "codigo_usuario"),		//relacionamento principal 
+	inverseJoinColumns = @JoinColumn(name = "codigo_permissao"))//relacionamento da classe <permissao>  
+	private List<Permissao> permissoes;
 
 	public Long getCodigo() {
 		return codigo;

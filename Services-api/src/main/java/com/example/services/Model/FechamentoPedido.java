@@ -1,30 +1,38 @@
 package com.example.services.Model;
 
+import java.math.BigDecimal;
+import java.time.OffsetDateTime;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "cozinha")
-public class Cozinha {
+@Table(name = "fechamento_pedido")
+public class FechamentoPedido {
 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotNull
+	@ManyToOne 						// N para 1, mesa pode ter um pedido ou mais
+	@JoinColumn(name = "cod_pedido")
 	private Pedido pedido;
 	
+	@Column(name = "hora_de_fechamento")
+	private OffsetDateTime horaFechamento;
+	
 	@NotNull
-	@NotBlank
-	@Enumerated(EnumType.STRING)
-	private PedidoFinalizado finalizado;
+	@Column(name = "valor_total")
+	private BigDecimal valorTotal;
 
 	public Long getId() {
 		return id;
@@ -42,12 +50,20 @@ public class Cozinha {
 		this.pedido = pedido;
 	}
 
-	public PedidoFinalizado getFinalizado() {
-		return finalizado;
+	public OffsetDateTime getHoraFechamento() {
+		return horaFechamento;
 	}
 
-	public void setFinalizado(PedidoFinalizado finalizado) {
-		this.finalizado = finalizado;
+	public void setHoraFechamento(OffsetDateTime horaFechamento) {
+		this.horaFechamento = horaFechamento;
+	}
+
+	public BigDecimal getValorTotal() {
+		return valorTotal;
+	}
+
+	public void setValorTotal(BigDecimal valorTotal) {
+		this.valorTotal = valorTotal;
 	}
 
 	@Override
@@ -66,7 +82,7 @@ public class Cozinha {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cozinha other = (Cozinha) obj;
+		FechamentoPedido other = (FechamentoPedido) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -74,6 +90,5 @@ public class Cozinha {
 			return false;
 		return true;
 	}
-	
-	
+	 
 }
