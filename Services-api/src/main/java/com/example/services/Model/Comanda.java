@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -18,12 +19,12 @@ public class Comanda {
 	private Long id;
 	
 	@NotNull
-	@ManyToMany						// Muitos para muitos, uma mesa pode ter varias comandas e uma comanda pode ter varias mesas
-	@JoinColumn(name = "cod_mesa")  // ligação foreign key
+	@ManyToOne 							 
+	@JoinColumn(name = "cod_mesa")					
 	private Mesa mesa;
 	
 	@NotNull
-	@ManyToMany							// Muitos para muitos, um produto pode estar em varias comandas, e uma comanda pode ter varios produtos
+	@ManyToOne						    // Muitos para muitos, um produto pode estar em varias comandas, e uma comanda pode ter varios produtos
 	@JoinColumn(name = "cod_produto")	// ligação foreign key
 	private Produto produto;
 	
