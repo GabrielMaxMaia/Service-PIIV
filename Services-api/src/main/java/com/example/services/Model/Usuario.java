@@ -37,6 +37,8 @@ public class Usuario {
 	joinColumns = @JoinColumn (name = "codigo_usuario"),		//relacionamento principal 
 	inverseJoinColumns = @JoinColumn(name = "codigo_permissao"))//relacionamento da classe <permissao>  
 	private List<Permissao> permissoes;
+	
+	public Usuario() { } // spring data jpa precisa de um construtor vazio
 
 	public Long getCodigo() {
 		return codigo;

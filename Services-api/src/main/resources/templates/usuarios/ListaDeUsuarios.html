@@ -1,32 +1,21 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-	<title>Lista de Usuários</title>
-</head>
+<head th:replace="~{fragmentos :: head('Lista de usuarios')}"></head>
 
 <body>
-	<div>
-		<div>
-			<h1>Lista de Usuarios</h1>
-		</div>
-		<div>
-			<div>
-				<table class="table">
+	<header th:replace="~{fragmentos :: header('Lista de Usuários')}"></header>
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<table class="table table-hover">
 					<thead>
 						<tr>
 							<th scope="col">Codigo</th>
 							<th scope="col">Nome</th>
 							<th scope="col">Email</th>
 							<th scope="col">Senha</th>
+							<th scope="col">Ações</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -35,13 +24,17 @@
 							<td th:text="${usuario.nome}">Nome do usuario</td>
 							<td th:text="${usuario.email}">Email do usuario</td>
 							<td th:text="${usuario.senha}">Senha do usuario</td>
-						</tr>						
+							<td><a th:href="@{/usuarios/{usuarioId}/editar(usuarioId = ${usuario.codigo})}">Editar</a></td>
+							<td><a th:href="@{/usuarios/{usuarioId}/deletar(usuarioId = ${usuario.codigo})}">Deletar</a></td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
 
 		</div>
-
+		<div class="row">
+			<a href="/usuarios/criar">Novo Usuario</a>
+		</div>
 
 
 	</div>
