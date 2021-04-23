@@ -13,19 +13,14 @@
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 			integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		
+		<head th:replace="~{fragmentos :: head('Lista de Categoria')}"></head>
 	</head>
 	
 	<body>
+		<header th:replace="~{fragmentos :: header('Lista de Categoria')}"></header>
 		<div class="container">
-			<div class="row">
-				<div class="col-xl" style="font-weight: bold;  font-family: Arial, Helvetica, sans-serif;
-											color: #404C51;
-											">
-					<h1 >Lista de categorias</h1>
-				</div>
-			</div>
 			<table class="table" style="margin-top: .85em; text-align:center;">
-				
 				<thead>
 				   <tr>
 				      <th scope="col">Codigo</th>
@@ -45,7 +40,6 @@
 					  </td>
 				    </tr>
 				</tbody>
-				
 			</table>
 		</div>
 	</body>

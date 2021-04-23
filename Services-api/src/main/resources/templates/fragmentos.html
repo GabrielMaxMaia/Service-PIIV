@@ -9,7 +9,9 @@
 
 	<title th:text="${titulo}">titulo de todas as paginas</title>
 </head>
-<header th:fragment="header(titulo)">
+<header th:fragment="header(titulo)" style="font-weight: bold;  
+											font-family: Arial, Helvetica, sans-serif;
+											color: #404C51;">
 		<div class="container mt-3">
 					<ul class="nav nav-tabs">
 						<li class="nav-item">
@@ -21,6 +23,16 @@
 							<a class="nav-link "
 							th:classappend="${#httpServletRequest.getRequestURI().startsWith('/usuarios') ? 'active':''}"
 						    href="/usuarios">usuarios</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link "
+							th:classappend="${#httpServletRequest.getRequestURI().startsWith('/categoria') ? 'active':''}"
+						    href="/categorias">categorias</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link "
+							th:classappend="${#httpServletRequest.getRequestURI().startsWith('/produto') ? 'active':''}"
+						    href="/produtos">produtos</a>
 						</li>
 					</ul>
 				</div>

@@ -12,9 +12,11 @@ public class RequisicaoNovoUsuario {
 	
 	@NotBlank
 	private String nome;
+	
 	@NotBlank
 	@Email
 	private String email;
+	
 	@NotBlank
 	private String senha;
 
@@ -41,7 +43,6 @@ public class RequisicaoNovoUsuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
 	
 	
 	public Long getCodigo() {
