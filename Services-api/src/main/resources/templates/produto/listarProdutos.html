@@ -21,7 +21,7 @@
 				<div class="col-xl" style="font-weight: bold;  font-family: Arial, Helvetica, sans-serif;
 											color: #404C51;
 											">
-					<h1 >Lista de categorias</h1>
+					<h1> Listar de produtos</h1>
 				</div>
 			</div>
 			<table class="table" style="margin-top: .85em; text-align:center;">
@@ -30,18 +30,23 @@
 				   <tr>
 				      <th scope="col">Codigo</th>
 				      <th scope="col">Nome</th>
+				      <th scope="col">Categoria</th>
+				      <th scope="col">Descrição</th>
+				      <th scope="col">Valor Unid</th>
 				      <th scope="col">Ferramenta</th>
 				    </tr>
 				 </thead>
 				 
 				 <tbody>
-				 	<tr th:each="categoria : ${categorias} ">
-				      <th scope="row" th:text="${categoria.getId()}">codigo</th>
-					  <td th:text="${categoria.nome}">Nome da categoria</td>
+				 	<tr th:each="produto : ${produtos} ">
+				      <th scope="row" th:text="${produto.getId()}">codigo</th>
+					  <td th:text="${produto.getNome()}">nome</td>
+					  <td th:text="${produto.getCategoria().getNome()}">Nome da categoria</td>
+					  <td th:text="${produto.getDescricao()}">Descricao</td>
+					  <td th:text="${produto.getValor()}">Valor</td>
 					  <td>
-					  	<a th:href="@{/categorias/delete/{id} (id = ${categoria.id})}">
-					  	 	<button type="submit" class="btn btn-danger">Excluir</button>
-					  	 </a>
+					  	 <button type="submit" class="btn btn-primary">Editar</button>
+					  	 <button type="submit" class="btn btn-danger">Excluir</button>
 					  </td>
 				    </tr>
 				</tbody>
