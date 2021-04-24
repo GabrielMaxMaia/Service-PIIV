@@ -20,41 +20,32 @@
 	<body>
 		<header th:replace="~{fragmentos :: header('Lista de Produto')}"></header>
 		<div class="container">
-			<div class="row">
-				<div class="col-12" style=" font-family: Arial, Helvetica, sans-serif;
-											color: #404C51; font-weight: bold;
-											">
-					<h1>Listar de produtos</h1>
-				</div>
-			</div>
-			<div class="col-12">
-				<table class="table" style="margin-top: .85em; text-align:center;">
-					<thead style="background-color: #F5F5F5;">
-						<tr>
-							<th scope="col-2">Codigo</th>
-							<th scope="col-2">Nome</th>
-							<th scope="col-2">Categoria</th>
-							<th scope="col-2">Descrição</th>
-							<th scope="col-2">Valor Unid</th>
-							<th scope="col-2">Ferramenta</th>
-						</tr>
-					</thead>
-					
-					<tbody>
-						<tr th:each="produto : ${produtos} ">
-							<sth scope="row" th:text="${produto.getId()}">codigo</th>
-							<td th:text="${produto.getNome()}">nome</td>
-							<td th:text="${produto.getCategoria().getNome()}">Nome da categoria</td>
-							<td th:text="${produto.getDescricao()}">Descricao</td>
-							<td th:text="${produto.getValor()}">Valor</td>
-							<td>
-							<button type="submit" class="btn btn-primary">Editar</button>
-							<button type="submit" class="btn btn-danger">Excluir</button>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+			<table class="table" style="margin-top: .85em; text-align:center;">
+				<thead style="background-color: #F5F5F5;">
+				   <tr>
+				      <th scope="col">Codigo</th>
+				      <th scope="col">Nome</th>
+				      <th scope="col">Categoria</th>
+				      <th scope="col">Descrição</th>
+				      <th scope="col">Valor Unitario</th>
+				      <th scope="col">Ferramentas</th>
+				    </tr>
+				 </thead>
+				 
+				 <tbody>
+				 	<tr th:each="produto : ${produtos} ">
+				      <th scope="row" th:text="${produto.getId()}">id</th>
+					  <td th:text="${produto.nome}">Nome do produto</td>
+					  <td th:text="${produto.getCategoria().getNome()}">Nome da Categoria</td>
+					  <td th:text="${produto.getDescricao()}">Descricao</td>
+					  <td th:text="${produto.getValor()}">Valor</td>	
+					  <td>
+					  	<button type="submit" class="btn btn-primary">Editar</button>
+					  	<button type="submit" class="btn btn-danger">Excluir</button>
+					  </td>
+				    </tr>
+				</tbody>
+			</table>
 		</div>
 	</body>
 </html>

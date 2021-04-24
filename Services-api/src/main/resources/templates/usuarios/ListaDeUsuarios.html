@@ -6,37 +6,40 @@
 <body>
 	<header th:replace="~{fragmentos :: header('Lista de Usuários')}"></header>
 	<div class="container">
-		<div class="row">
 			<div class="col-12">
-				<table class="table table-hover">
+				<table class="table" style="margin-top: .85em; text-align:center;">
 					<thead style="background-color: #F5F5F5;">
 						<tr>
-							<th scope="col">Codigo</th>
-							<th scope="col">Nome</th>
-							<th scope="col">Email</th>
-							<th scope="col">Senha</th>
-							<th scope="col">Ações</th>
+							<th scope="col-2">Codigo</th>
+							<th scope="col-2">Nome</th>
+							<th scope="col-2">Email</th>
+							<th scope="col-2">Senha</th>
+							<th scope="col-2">Ferramentas</th>
 						</tr>
 					</thead>
+					
 					<tbody>
 						<tr th:each="usuario : ${usuarios}">
 							<th scope="row" th:text="${usuario.getCodigo()}">1</th>
 							<td th:text="${usuario.nome}">Nome do usuario</td>
 							<td th:text="${usuario.email}">Email do usuario</td>
 							<td th:text="${usuario.senha}">Senha do usuario</td>
-							<td><a th:href="@{/usuarios/{usuarioId}/editar(usuarioId = ${usuario.codigo})}">Editar</a></td>
-							<td><a th:href="@{/usuarios/{usuarioId}/deletar(usuarioId = ${usuario.codigo})}">Deletar</a></td>
+							<td>
+								<a th:href="@{/usuarios/{usuarioId}/editar(usuarioId = ${usuario.codigo})}">
+								<button type="submit" class="btn btn-primary">Editar</button></a>
+							
+								<a th:href="@{/usuarios/{usuarioId}/deletar(usuarioId = ${usuario.codigo})}">
+								<button type="submit" class="btn btn-danger">Excluir</button></a>	
+							</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
-
+			
+			<div class="row">
+				<a href="/usuarios/criar">Novo Usuario</a>
+			</div>
 		</div>
-		<div class="row">
-			<a href="/usuarios/criar">Novo Usuario</a>
-		</div>
-
-
 	</div>
 
 

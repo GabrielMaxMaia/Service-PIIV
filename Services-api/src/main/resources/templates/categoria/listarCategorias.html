@@ -21,7 +21,7 @@
 		<header th:replace="~{fragmentos :: header('Lista de Categoria')}"></header>
 		<div class="container">
 			<table class="table" style="margin-top: .85em; text-align:center;">
-				<thead>
+				<thead style="background-color: #F5F5F5;">
 				   <tr>
 				      <th scope="col">Codigo</th>
 				      <th scope="col">Nome</th>
@@ -34,9 +34,11 @@
 				      <th scope="row" th:text="${categoria.getId()}">codigo</th>
 					  <td th:text="${categoria.nome}">Nome da categoria</td>
 					  <td>
+					  	<button type="submit" class="btn btn-primary">Editar</button>
+					  	
 					  	<a th:href="@{/categorias/delete/{id} (id = ${categoria.id})}">
 					  	 	<button type="submit" class="btn btn-danger">Excluir</button>
-					  	 </a>
+					  	</a>
 					  </td>
 				    </tr>
 				</tbody>

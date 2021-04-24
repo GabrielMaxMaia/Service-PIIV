@@ -18,7 +18,7 @@ public class ProdutoController {
 	@GetMapping
 	public ModelAndView listar() {
 		ModelAndView modelView = new ModelAndView("produto/listarProdutos");
-		modelView.addObject("produtos",  produtoRepository.findAll());
+		modelView.addObject("produtos",produtoRepository.findAll());
 		return modelView;
 	}
 	
