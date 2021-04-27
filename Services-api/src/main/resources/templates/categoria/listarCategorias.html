@@ -20,6 +20,21 @@
 	<body>
 		<header th:replace="~{fragmentos :: header('Lista de Categoria')}"></header>
 		<div class="container">
+			<form  method="POST" th:object="${categoria}" th:action="@{/categorias}">
+				<div class="form-row">
+		
+					<div class="form-group col-md-8">
+						<input type="text" class="form-control" placeholder="Nome" 
+							th:field="*{nome}"/>
+					</div>
+					
+					<div class="col-md-2">
+						<button type="submit" class="btn btn-success">Adicionar</button>
+					</div>
+				</div>
+			</form>
+			
+		
 			<table class="table" style="margin-top: .85em; text-align:center;">
 				<thead style="background-color: #F5F5F5;">
 				   <tr>
