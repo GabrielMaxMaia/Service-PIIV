@@ -16,7 +16,7 @@ public class Mesa {
 	private Long id;
 	
 	@NotNull
-	private int numeracao;
+	private int numero;
 
 	public Long getId() {
 		return id;
@@ -26,12 +26,12 @@ public class Mesa {
 		this.id = id;
 	}
 
-	public int getNumeracao() {
-		return numeracao;
+	public int getNumero() {
+		return numero;
 	}
 
-	public void setNumeracao(int numeracao) {
-		this.numeracao = numeracao;
+	public void setNumero(int numero) {
+		this.numero = numero;
 	}
 
 

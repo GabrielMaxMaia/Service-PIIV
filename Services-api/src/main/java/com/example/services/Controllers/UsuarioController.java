@@ -46,7 +46,7 @@ public class UsuarioController {
 
 	@PostMapping("")
 	public ModelAndView create(@Valid RequisicaoNovoUsuario requisicao, BindingResult bindingResult) {
-		// binding result é um parametro so validation do spring utilizado em conjunto
+		// binding result é um parametro do validation do spring utilizado em conjunto
 		// com o @valid
 		if (bindingResult.hasErrors()) {
 

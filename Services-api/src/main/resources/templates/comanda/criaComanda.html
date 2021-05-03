@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragmentos :: head('Criar Comanda')}"></head>
+
+<body>
+	<header th:replace="~{fragmentos :: header('Nova Comanda')}"></header>
+	
+	<div th:replace="~{comanda/FragmentosComanda :: form('/comandas')}">Formulário</div>	
+	
+	
+</body>
+
+</html>

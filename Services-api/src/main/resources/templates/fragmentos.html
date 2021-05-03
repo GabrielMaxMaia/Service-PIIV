@@ -34,6 +34,11 @@
 							th:classappend="${#httpServletRequest.getRequestURI().startsWith('/produtos') ? 'active':''}"
 						    href="/produtos">produtos</a>
 						</li>
+						<li class="nav-item">
+							<a class="nav-link "
+							th:classappend="${#httpServletRequest.getRequestURI().startsWith('/comandas') ? 'active':''}"
+						    href="/comandas/criar">Criar Comandas</a>
+						</li>
 					</ul>
 				</div>
 			

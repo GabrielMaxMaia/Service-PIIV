@@ -87,6 +87,11 @@ public class Comanda {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Comanda [id=" + id + ", mesa=" + mesa.getNumero() + ", produto=" + produto.getNome() + ", quantidade=" + quantidade + "]";
+	}
 	
 	
 }
