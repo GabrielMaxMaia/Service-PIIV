@@ -20,6 +20,13 @@
 	<body>
 		<header th:replace="~{fragmentos :: header('Lista de Produto')}"></header>
 		<div class="container">
+		
+			<div class="md-col-2" style="margin-top: 35px; ">
+				<a href="/produtos/criar">
+					<button type="button" class="btn btn-primary">Novo Produto</button>
+				</a>
+			</div>
+			
 			<table class="table" style="margin-top: .85em; text-align:center;">
 				<thead style="background-color: #F5F5F5;">
 				   <tr>
@@ -41,7 +48,11 @@
 					  <td th:text="${produto.getValor()}">Valor</td>	
 					  <td>
 					  	<button type="submit" class="btn btn-primary">Editar</button>
-					  	<button type="submit" class="btn btn-danger">Excluir</button>
+					  	
+					  	<a th:href="@{/produtos/delete/{id} (id = ${produto.id})}">
+					  	 	<button type="submit" class="btn btn-danger">Excluir</button>
+					  	</a>
+					  	
 					  </td>
 				    </tr>
 				</tbody>

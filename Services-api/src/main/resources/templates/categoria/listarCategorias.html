@@ -34,7 +34,6 @@
 				</div>
 			</form>
 			
-		
 			<table class="table" style="margin-top: .85em; text-align:center;">
 				<thead style="background-color: #F5F5F5;">
 				   <tr>
@@ -49,7 +48,8 @@
 				      <th scope="row" th:text="${categoria.getId()}">codigo</th>
 					  <td th:text="${categoria.nome}">Nome da categoria</td>
 					  <td>
-					  	<button type="submit" class="btn btn-primary">Editar</button>
+					  	<button th:href="@{/categorias/{id} (id = ${categoria.id})}  " 
+					  		type="submit" class="btn btn-primary">Editar</button>
 					  	
 					  	<a th:href="@{/categorias/delete/{id} (id = ${categoria.id})}">
 					  	 	<button type="submit" class="btn btn-danger">Excluir</button>
