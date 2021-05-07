@@ -1,97 +1,104 @@
 package com.example.services.Model;
 
+import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "comanda")
+@Table(name="comanda" , schema = "targetSchemaName")
 public class Comanda {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	
 	@NotNull
-	@ManyToOne 							 
-	@JoinColumn(name = "cod_mesa")					
+	@ManyToOne 							
+	@JoinColumn(name = "id_mesa")
 	private Mesa mesa;
 	
-	@NotNull
-	@ManyToOne						    // Muitos para muitos, um produto pode estar em varias comandas, e uma comanda pode ter varios produtos
-	@JoinColumn(name = "cod_produto")	// ligação foreign key
-	private Produto produto;
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name="mesa_produto", joinColumns = @JoinColumn(name = "id_mesa"),
+									inverseJoinColumns = @JoinColumn(name = "id_produto"))
+	private Set<Produto> produtos = new HashSet<>();
 	
-	@NotNull
-	private int quantidade;
+	
+	/*@Column(name = "valorTotal")
+	private BigDecimal valor;*/
+	
+	private Integer quantidade;
+	
+	
+	public float somador(Produto produto,int quantidade) {
+		float result =  produto.getValor().floatValue() * quantidade;
+		return result;
+	}
+
 
 	public Long getId() {
 		return id;
 	}
 
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 
 	public Mesa getMesa() {
 		return mesa;
 	}
 
+
 	public void setMesa(Mesa mesa) {
 		this.mesa = mesa;
 	}
 
-	public Produto getProduto() {
-		return produto;
+
+	public Set<Produto> getProdutos() {
+		return produtos;
 	}
 
-	public void setProduto(Produto produto) {
-		this.produto = produto;
+
+	public void setProdutos(Set<Produto> produtos) {
+		this.produtos = produtos;
 	}
 
-	public int getQuantidade() {
+
+	/*public BigDecimal getValor() {
+		return valor;
+	}
+
+
+	public void setValor(BigDecimal valor) {
+		this.valor = valor;
+	}*/
+
+
+	public Integer getQuantidade() {
 		return quantidade;
 	}
 
-	public void setQuantidade(int quantidade) {
+
+	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Comanda other = (Comanda) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Comanda [id=" + id + ", mesa=" + mesa.getNumero() + ", produto=" + produto.getNome() + ", quantidade=" + quantidade + "]";
-	}
 	
-	
+
 }
+	

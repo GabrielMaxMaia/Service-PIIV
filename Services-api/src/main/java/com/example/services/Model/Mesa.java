@@ -34,6 +34,7 @@ public class Mesa {
 		this.numero = numero;
 	}
 
+	
 
 	@Override
 	public int hashCode() {
@@ -60,4 +61,11 @@ public class Mesa {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Mesa [id=" + id + ", numero=" + numero + "]";
+	}
+	
+	
 }

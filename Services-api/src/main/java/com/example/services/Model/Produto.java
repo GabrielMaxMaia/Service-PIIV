@@ -30,7 +30,7 @@ public class Produto {
 	private Categoria categoria;
 	
 	@NotNull
-	private BigDecimal valor;
+	private Double valor;
 
 	public Long getId() {
 		return id;
@@ -64,13 +64,15 @@ public class Produto {
 		this.categoria = categoria;
 	}
 
-	public BigDecimal getValor() {
+	public Double getValor() {
 		return valor;
 	}
 
-	public void setValor(BigDecimal valor) {
+	public void setValor(Double valor) {
 		this.valor = valor;
 	}
+	
+
 
 	@Override
 	public int hashCode() {
@@ -96,6 +98,14 @@ public class Produto {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Produto [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", categoria=" + categoria
+				+ ", valor=" + valor + "]";
+	}
+
+	
 	
 	
 	

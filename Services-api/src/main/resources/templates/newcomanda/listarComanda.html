@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width" />
+		
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+			integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	</head>
+	
+	<body>
+		<div class="container">
+			<div class="md-col-12">
+				<h1>Lista de Comandas</h1>
+			</div>
+			
+			<table class="table" style="margin-top: .85em; text-align:center;">
+				<thead style="background-color: #F5F5F5;">
+				   <tr>
+				      <th scope="col">Codigo</th>
+				      <th scope="col">Mesa</th>
+				      <th scope="col">Produto</th>
+				      <th scope="col">usuario</th>
+				      <th scope="col">quantidade</th>
+				      <th scope="col">observacao</th>
+				      <th scope="col">valor</th>
+				      <th scope="col">Ferramentas</th>
+				      <!--<th scope="col">Valor Total</th>-->
+				    </tr>
+				 </thead>
+				 
+				 <tbody>
+				 	<tr th:each="cm : ${listaComandas} ">
+				      <th scope="row" th:text="${cm.getId()}">id</th>
+					  <td th:text="${cm.getMesa().getNumero()}">mesa</td>
+					  <td th:text="${cm.getProduto()}">Produtos</td>
+					  <td th:text="${cm.getUsuario().getNome()}">usuario</td>
+					  <td th:text="${cm.getQuantidade()}">quantidade</td>
+					  <td th:text="${cm.getObservacao()}">observação</td>
+					  <td th:text="${cm.getValor()}">Valor</td>
+					  <!--<td th:text="${cm.getValor()}">Valor</td>-->	
+					  <td>
+					  	<button type="submit" class="btn btn-primary">Editar</button>
+					  	<button type="submit" class="btn btn-danger">Excluir</button>
+					  </td>
+				    </tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>

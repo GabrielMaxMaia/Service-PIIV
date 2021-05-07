@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.services.Model.Categoria;
 import com.example.services.Model.Comanda;
 import com.example.services.Model.Mesa;
 import com.example.services.Model.Produto;
@@ -25,17 +27,56 @@ import com.example.services.repositories.MesaRepository;
 import com.example.services.repositories.ProdutoRepository;
 
 @Controller
-@RequestMapping(value = "/comandas")
+@RequestMapping("/comandas")
 public class ComandaController {
 	
 	@Autowired
 	private MesaRepository mesaRepository;
-	@Autowired
-	private ProdutoRepository produtoRepository;
+	
 	@Autowired
 	private ComandaRepository comandaRepository;
 	
+	@Autowired
+	private ProdutoRepository produtoRepository;
+	
+	@GetMapping
+	public String listar(Model model) {
+		List<Comanda> listaComandas = comandaRepository.findAll();
+		model.addAttribute("listaComandas", listaComandas);
+		return "/comanda/listarComanda";
+	}
+	
 	@GetMapping("/criar")
+	public ModelAndView form() {
+		ModelAndView mv = new ModelAndView("/comanda/criarComanda");
+
+		Comanda comanda = new Comanda();
+		mv.addObject(comanda);
+		
+		// lista de produtos
+		List<Produto> produtos = this.produtoRepository.findAll();
+		mv.addObject("listProdutos", produtos);
+		
+		// lista de mesa
+		List<Mesa> mesas = this.mesaRepository.findAll();
+		mv.addObject("listMesa", mesas);
+		
+		return mv;
+	}
+	
+	@PostMapping
+	public String salvar(@Valid Comanda comanda) {
+		this.comandaRepository.save(comanda); 
+		return "redirect:/comandas";
+	}
+	
+	@GetMapping("delete/{id}")
+	public String deleteComandaForm(@PathVariable Long id) {
+	    this.comandaRepository.deleteById(id);
+	    return "redirect:/comandas";       
+	}
+	
+	/*@GetMapping("/criar")
 	public ModelAndView criar() {
 		ModelAndView mv = new ModelAndView("/comanda/criaComanda");
 		Comanda comanda = new Comanda();
@@ -116,6 +157,6 @@ public class ComandaController {
 			return "redirect:/usuarios";
 		}
 		
-	}
+	}*/
 
 }
