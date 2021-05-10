@@ -38,7 +38,7 @@
 				 	<tr th:each="cm : ${listaComandas} ">
 				      <th scope="row" th:text="${cm.getId()}">id</th>
 					  <td th:text="${cm.getMesa().getNumero()}">mesa</td>
-					  <td th:text="${cm.getProduto()}">Produtos</td>
+					  <td th:text="${cm.getProduto().getNome()}">Produtos</td>
 					  <td th:text="${cm.getUsuario().getNome()}">usuario</td>
 					  <td th:text="${cm.getQuantidade()}">quantidade</td>
 					  <td th:text="${cm.getObservacao()}">observação</td>

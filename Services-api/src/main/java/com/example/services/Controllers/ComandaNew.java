@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.services.Model.Comanda;
 import com.example.services.Model.NewComanda;
+import com.example.services.Model.Produto;
 import com.example.services.repositories.ComandaRepository;
 import com.example.services.repositories.MesaRepository;
 import com.example.services.repositories.NewComandaRepository;
@@ -29,9 +30,9 @@ public class ComandaNew {
 	private ProdutoRepository produtoRepository;
 	
 	
-	@GetMapping
+	@GetMapping("")
 	public String listar(Model model) {
-		List<NewComanda> listaComandas = newComanda.findAll();
+		List<NewComanda> listaComandas = newComanda.findAll();		
 		model.addAttribute("listaComandas", listaComandas);
 		return "/newcomanda/listarComanda";
 	} 

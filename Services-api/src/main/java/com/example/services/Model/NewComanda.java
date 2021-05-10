@@ -30,9 +30,9 @@ public class NewComanda {
 	private Mesa mesa;
 	
 	@NotNull
-	@OneToMany	 							
+	@ManyToOne	 							
 	@JoinColumn(name = "id_produto")
-	private List<Produto> produto = new ArrayList<>();
+	private Produto produto;
 	
 	@NotNull
 	@ManyToOne 							
@@ -64,11 +64,11 @@ public class NewComanda {
 		this.mesa = mesa;
 	}
 
-	public List<Produto> getProduto() {
+	public Produto getProduto() {
 		return produto;
 	}
 
-	public void setProduto(List<Produto> produto) {
+	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
 

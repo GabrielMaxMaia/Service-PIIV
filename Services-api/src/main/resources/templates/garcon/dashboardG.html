@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragmentos :: head('dashboard')}"></head>
+
+<body>
+
+
+	<div class="jumbotron text-center">
+		<h1>Comandas</h1>	
+		<button class="btn btn-secondary">Adicionar Comanda</button>
+	</div>
+	<div class="text-center">
+		<h4>Gerenciamento das Comandas</h4>		
+	</div>
+	<div class="container">	
+		<div class="row">
+			<th:block th:each="mesa : ${mesas}">
+				<div class="col-sm-4 text-center" >
+					<h4>Mesa</h4>
+					<h3 class="btn btn-secondary" th:utext="${mesa.numero}">..</h3>
+				</div>
+			</th:block>
+		</div>
+	</div>
+
+
+</body>
+
+</html>
