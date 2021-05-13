@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -31,23 +32,6 @@ public class Comanda {
 	@ManyToOne 							
 	@JoinColumn(name = "id_mesa")
 	private Mesa mesa;
-	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name="mesa_produto", joinColumns = @JoinColumn(name = "id_mesa"),
-									inverseJoinColumns = @JoinColumn(name = "id_produto"))
-	private Set<Produto> produtos = new HashSet<>();
-	
-	
-	/*@Column(name = "valorTotal")
-	private BigDecimal valor;*/
-	
-	private Integer quantidade;
-	
-	
-	public float somador(Produto produto,int quantidade) {
-		float result =  produto.getValor().floatValue() * quantidade;
-		return result;
-	}
 
 
 	public Long getId() {
@@ -70,35 +54,43 @@ public class Comanda {
 	}
 
 
-	public Set<Produto> getProdutos() {
-		return produtos;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((mesa == null) ? 0 : mesa.hashCode());
+		return result;
 	}
 
 
-	public void setProdutos(Set<Produto> produtos) {
-		this.produtos = produtos;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Comanda other = (Comanda) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (mesa == null) {
+			if (other.mesa != null)
+				return false;
+		} else if (!mesa.equals(other.mesa))
+			return false;
+		return true;
 	}
 
 
-	/*public BigDecimal getValor() {
-		return valor;
+	@Override
+	public String toString() {
+		return "Comanda [id=" + id + ", mesa=" + mesa + "]";
 	}
-
-
-	public void setValor(BigDecimal valor) {
-		this.valor = valor;
-	}*/
-
-
-	public Integer getQuantidade() {
-		return quantidade;
-	}
-
-
-	public void setQuantidade(Integer quantidade) {
-		this.quantidade = quantidade;
-	}
-	
-
+		
 }
 	

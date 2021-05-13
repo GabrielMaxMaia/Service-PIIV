@@ -78,6 +78,4 @@ public class Cozinha {
 			return false;
 		return true;
 	}
-	
-	
 }

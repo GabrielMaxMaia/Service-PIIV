@@ -14,12 +14,13 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "fechamento_pedido")
-public class FechamentoPedido {
-
+@Table(name = "fechamento_comanda")
+public class FechamentoComanda {
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idfechamento_comanda")
 	private Long id;
 	
 	@NotNull
@@ -31,7 +32,7 @@ public class FechamentoPedido {
 	private OffsetDateTime horaFechamento;
 	
 	@NotNull
-	@Column(name = "valor_total")
+	@Column(name = "valor_Total")
 	private BigDecimal valorTotal;
 
 	public Long getId() {
@@ -85,7 +86,7 @@ public class FechamentoPedido {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		FechamentoPedido other = (FechamentoPedido) obj;
+		FechamentoComanda other = (FechamentoComanda) obj;
 		if (horaFechamento == null) {
 			if (other.horaFechamento != null)
 				return false;
@@ -111,12 +112,8 @@ public class FechamentoPedido {
 
 	@Override
 	public String toString() {
-		return "FechamentoPedido [id=" + id + ", pedido=" + pedido + ", horaFechamento=" + horaFechamento
+		return "FechamentoComanda [id=" + id + ", pedido=" + pedido + ", horaFechamento=" + horaFechamento
 				+ ", valorTotal=" + valorTotal + "]";
 	}
 	
-	
 }
-
-	 
-

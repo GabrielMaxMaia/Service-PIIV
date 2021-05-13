@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.services.Model.Categoria;
 import com.example.services.Model.Comanda;
 import com.example.services.Model.Mesa;
 import com.example.services.Model.Produto;
@@ -64,29 +63,12 @@ public class ComandaController {
 		return mv;
 	}
 	
-	@PostMapping
-	public String salvar(@Valid Comanda comanda) {
-		this.comandaRepository.save(comanda); 
-		return "redirect:/comandas";
-	}
-	
 	@GetMapping("delete/{id}")
 	public String deleteComandaForm(@PathVariable Long id) {
 	    this.comandaRepository.deleteById(id);
 	    return "redirect:/comandas";       
 	}
 	
-	/*@GetMapping("/criar")
-	public ModelAndView criar() {
-		ModelAndView mv = new ModelAndView("/comanda/criaComanda");
-		Comanda comanda = new Comanda();
-		List<Mesa> mesas = this.mesaRepository.findAll();
-		mv.addObject("mesa", mesas);
-		List<Produto> produtos = this.produtoRepository.findAll();
-		mv.addObject("produto",produtos);
-		mv.addObject(comanda);
-		return mv;
-	}
 	
 	@PostMapping("")
 	public ModelAndView create(@Valid Comanda comanda, BindingResult bindingResult) {
@@ -157,6 +139,6 @@ public class ComandaController {
 			return "redirect:/usuarios";
 		}
 		
-	}*/
+	}
 
 }
