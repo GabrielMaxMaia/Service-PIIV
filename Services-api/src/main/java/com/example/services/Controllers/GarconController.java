@@ -26,3 +26,4 @@ public class GarconController {
 		return "/garcon/dashboardG";
 	}
 }
+
