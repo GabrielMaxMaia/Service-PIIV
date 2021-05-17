@@ -6,19 +6,8 @@
 					<select class="form-select" name="mesa">
 						<option th:each="mesasV : ${mesa}"	th:value="${mesasV.numero}" th:text="${mesasV.numero}"></option>
 					</select>
-				</div>
-				<div class="mb-3">
-					<label class="form-label">Produtos</label>
-					<select class="form-select" name="produto">
-						<option th:each="produtosV : ${produto}"  th:value="${produtosV.categoria.id}" th:text="${produtosV.nome}"></option>
-					</select>
-				</div>
-				<div class="mb-3">
-					<label class="form-label">Quantidade</label>
-					<input class="form-control" th:errorclass="is-invalid" type="text" th:field="*{quantidade}">
-					<div class="invalid-feedback" th:errors="*{quantidade}"></div>
-				</div>
-				<button class="btn btn-primary" type="submit">Efetuar O Pedido</button>				
+				</div>				
+				<button class="btn btn-primary" type="submit">Abrir comanda</button>				
 			</form>
 		
 		</div>

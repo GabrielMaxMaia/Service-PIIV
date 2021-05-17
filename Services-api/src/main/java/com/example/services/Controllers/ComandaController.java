@@ -47,18 +47,14 @@ public class ComandaController {
 	
 	@GetMapping("/criar")
 	public ModelAndView form() {
-		ModelAndView mv = new ModelAndView("/comanda/criarComanda");
+		ModelAndView mv = new ModelAndView("/comanda/criaComanda");
 
 		Comanda comanda = new Comanda();
 		mv.addObject(comanda);
-		
-		// lista de produtos
-		List<Produto> produtos = this.produtoRepository.findAll();
-		mv.addObject("listProdutos", produtos);
-		
+						
 		// lista de mesa
 		List<Mesa> mesas = this.mesaRepository.findAll();
-		mv.addObject("listMesa", mesas);
+		mv.addObject("mesa", mesas);
 		
 		return mv;
 	}

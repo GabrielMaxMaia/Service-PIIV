@@ -1,7 +1,15 @@
 package com.example.services.dto;
 
+import java.util.List;
+
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+
+import com.example.services.Model.Permissao;
 import com.example.services.Model.Usuario;
 
 // é uma classe dto (data transfer object) uma classe auxiliar de segurança para receber o formulario html apenas esses atributos
@@ -19,6 +27,22 @@ public class RequisicaoNovoUsuario {
 	
 	@NotBlank
 	private String senha;
+	
+	@ManyToMany(fetch = FetchType.EAGER)						//toda vez que eu buscar os usuario já traz as permissoes dele
+	@JoinTable(name = "usuario_permissao",						//onde vou estar relacionando com a tabela Usuario_Permissao
+	joinColumns = @JoinColumn (name = "codigo_usuario"),		//relacionamento principal 
+	inverseJoinColumns = @JoinColumn(name = "codigo_permissao"))//relacionamento da classe <permissao>  
+	private List<Permissao> permissoes;
+	
+	
+
+	public List<Permissao> getPermissoes() {
+		return permissoes;
+	}
+
+	public void setPermissoes(List<Permissao> permissoes) {
+		this.permissoes = permissoes;
+	}
 
 	public String getNome() {
 		return nome;
@@ -59,6 +83,7 @@ public class RequisicaoNovoUsuario {
 		usuario.setNome(this.nome);
 		usuario.setEmail(this.email);
 		usuario.setSenha(this.senha);
+		usuario.setPermissoes(this.permissoes);
 		
 		return usuario;
 	}
@@ -78,4 +103,11 @@ public class RequisicaoNovoUsuario {
 		this.senha = usuario.getSenha();
 	}
 
+	@Override
+	public String toString() {
+		return "RequisicaoNovoUsuario [codigo=" + codigo + ", nome=" + nome + ", email=" + email + ", senha=" + senha
+				+ ", permissoes=" + permissoes + "]";
+	}
+
+	
 }

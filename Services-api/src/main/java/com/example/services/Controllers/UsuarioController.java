@@ -15,16 +15,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.services.Model.Mesa;
+import com.example.services.Model.Permissao;
 import com.example.services.Model.Usuario;
 import com.example.services.dto.RequisicaoNovoUsuario;
-import com.example.services.repositories.usuarioRepository;
+import com.example.services.repositories.PermissaoRepository;
+import com.example.services.repositories.UsuarioRepository;
 
 @Controller
 @RequestMapping(value = "/usuarios")
 public class UsuarioController {
 
 	@Autowired
-	private usuarioRepository usuarioRepository;
+	private UsuarioRepository usuarioRepository;
+
+	@Autowired
+	private PermissaoRepository permissaoRepository;
 
 	@GetMapping("")
 	public ModelAndView listar() {
@@ -40,6 +46,10 @@ public class UsuarioController {
 		ModelAndView mv = new ModelAndView("usuarios/CriarUsuario");
 		RequisicaoNovoUsuario requisicao = new RequisicaoNovoUsuario();
 		mv.addObject(requisicao);
+
+		// lista de permissoes
+		List<Permissao> permissao = this.permissaoRepository.findAll();
+		mv.addObject("permissoes", permissao);
 		return mv;
 	}
 
@@ -53,7 +63,7 @@ public class UsuarioController {
 			return mv;
 		} else {
 			Usuario usuario = requisicao.toUsuario();
-			this.usuarioRepository.save(usuario);
+			this.usuarioRepository.save(usuario);			
 			return new ModelAndView("redirect:/usuarios");
 		}
 
@@ -87,31 +97,31 @@ public class UsuarioController {
 			ModelAndView mv = new ModelAndView("usuarios/editarUsuario");
 			mv.addObject("usuarioId", id);
 			return mv;
-			
+
 		} else {
 			Optional<Usuario> optional = this.usuarioRepository.findById(id);
-			
-			if(optional.isPresent()) {				
+
+			if (optional.isPresent()) {
 				Usuario usuario = requisicao.toUsuario(optional.get());
 				usuario.setCodigo(id);
 				this.usuarioRepository.save(usuario);
 				return new ModelAndView("redirect:/usuarios");
-			}else {
+			} else {
 				return new ModelAndView("redirect:/usuarios");
 			}
 		}
 
 	}
-	
+
 	@GetMapping("{id}/deletar")
 	public String delete(@PathVariable Long id) {
 		try {
 			this.usuarioRepository.deleteById(id);
 			return "redirect:/usuarios";
-		}catch(EmptyResultDataAccessException e){
+		} catch (EmptyResultDataAccessException e) {
 			System.out.println(e);
 			return "redirect:/usuarios";
 		}
-		
+
 	}
 }

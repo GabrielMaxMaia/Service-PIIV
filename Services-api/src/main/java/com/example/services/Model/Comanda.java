@@ -30,7 +30,7 @@ public class Comanda {
 	
 	@NotNull
 	@ManyToOne 							
-	@JoinColumn(name = "id_mesa")
+	@JoinColumn(name = "cod_mesa")
 	private Mesa mesa;
 
 
