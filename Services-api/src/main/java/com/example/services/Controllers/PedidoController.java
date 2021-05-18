@@ -43,15 +43,23 @@ public class PedidoController {
 
 	@GetMapping("/{id}/listar")
 	public ModelAndView listar(@PathVariable Long id, Model model) {
-		List<Pedido> listaPedido = new ArrayList<>();	
+		
+		//List<Pedido> listaPedido = new ArrayList<>();	
 
 		//listaPedido.add(pedidoRepository.findById(id).orElseThrow());
 		//model.addAttribute("Pedidos", listaPedido);	
 		
+		//Optional<Pedido> optional = this.pedidoRepository.findById(id);
 		
-		Optional<Pedido> optional = this.pedidoRepository.findById(id);
-
-		if (optional.isPresent()) {
+		List<Pedido> listaPedido = pedidoRepository.findByComandaId(id);
+		
+		ModelAndView mv = new ModelAndView("pedido/listarPedidos");
+		
+		mv.addObject("pedidos", listaPedido);
+		
+		return mv;
+		
+		/*if (optional.isPresent()) {
 			listaPedido.add(optional.get()) ;			
 			ModelAndView mv = new ModelAndView("pedido/listarPedidos");
 			mv.addObject("pedidos", listaPedido);
@@ -61,7 +69,7 @@ public class PedidoController {
 
 			return new ModelAndView("redirect:/usuarios");
 
-		}
+		}*/
 		
 		
 	}
