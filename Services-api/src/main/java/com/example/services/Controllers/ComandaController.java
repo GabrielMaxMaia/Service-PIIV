@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.services.Model.Comanda;
@@ -66,7 +67,7 @@ public class ComandaController {
 	}
 	
 	
-	@PostMapping("")
+	@PostMapping("")	
 	public ModelAndView create(@Valid Comanda comanda, BindingResult bindingResult) {
 		
 		if (bindingResult.hasErrors()) {
@@ -74,13 +75,17 @@ public class ComandaController {
 			return mv;
 		} else {			
 			this.comandaRepository.save(comanda);
-			ModelAndView mv = new ModelAndView("comanda/EditarComanda");
-			List<Mesa> mesas = this.mesaRepository.findAll();
-			mv.addObject("mesa", mesas);
-			List<Produto> produtos = this.produtoRepository.findAll();
-			mv.addObject("produto",produtos);
-			return mv;
 		}
+			// chamada do metodo que redireciona apos criar a comanda
+		return redirecionar(comanda, bindingResult);
+	}
+	
+	//metodo para redirecionar para tela de pedido assim que criar a comanda
+	@RequestMapping(value = "/pedidos/listar", method = RequestMethod.GET)			
+	public ModelAndView redirecionar(@Valid Comanda comanda, BindingResult bindingResult) {
+		Long id = this.comandaRepository.findComanda();		
+		ModelAndView mv = new ModelAndView("redirect:/pedidos/"+id+"/listar");		
+		return mv;
 	}
 	
 	@GetMapping("/{id}/editar")
