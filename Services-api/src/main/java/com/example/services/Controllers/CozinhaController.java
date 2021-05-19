@@ -53,6 +53,7 @@ public class CozinhaController {
 
 		ModelAndView mv = new ModelAndView("cozinha/listarPedidos");
 
+		
 		mv.addObject("ids", id);
 		mv.addObject("nomes", nome);
 		mv.addObject("quantidades", quantidade);
