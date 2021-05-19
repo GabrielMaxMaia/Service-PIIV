@@ -54,16 +54,20 @@ public class PedidoController {
 	@GetMapping("/{id}/listar")
 	public ModelAndView listar(@PathVariable Long id, Model model) {
 		
-		comandaRepository.existsById(id); // verifica se a comanda existe
+		 // verifica se a comanda existe
 		
-		List<Pedido> listaPedido = pedidoRepository.findPedidosByComandaId(id);
-		
-		ModelAndView mv = new ModelAndView("pedido/comanda/listarPedidos");
-		
-		mv.addObject("pedidos", listaPedido);
-		mv.addObject("id", id);
-		
-		return mv;
+		if(comandaRepository.existsById(id)) {
+			List<Pedido> listaPedido = pedidoRepository.findPedidosByComandaId(id);
+			ModelAndView mv = new ModelAndView("pedido/comanda/listarPedidos");
+			
+			mv.addObject("pedidos", listaPedido);
+			mv.addObject("id", id);
+			
+			return mv;
+		}else {
+			ModelAndView mv = new ModelAndView("pedido/comanda/erroComanda");			
+			return mv;		
+		}	
 		
 	}
 	
