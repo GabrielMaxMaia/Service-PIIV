@@ -22,13 +22,21 @@
 					</thead>
 					
 					<tbody>
-						<tr th:each="pedido : ${pedidos}">
-							<th scope="row" th:text="${pedido.get(0)}">codigo da mesa</th>
-							<td th:text="${pedido.get(1)}">status</td>
-							<td th:text="${pedido.get(2)}">hora do pedido</td>
-							<td th:text="${pedido.get(3)}">observacao</td>
-							<td th:text="${pedido.get(4)}">comanda id</td>													
+						<tr th:each="id : ${ids}">
+						
+						 	<th scope="row" th:text="${id}">codigo da mesa</th>
+						  	
 						</tr>
+						
+						<tr th:each ="nome : ${nomes}">
+						
+							<td scope="row" th:text="${nome}">Prato</td>
+						</tr>
+<!-- 							<td th:text="${pedido.get(1)}">status</td> -->
+<!-- 							<td th:text="${pedido.get(2)}">hora do pedido</td> -->
+<!-- 							<td th:text="${pedido.get(3)}">observacao</td> -->
+<!-- 							<td th:text="${pedido.get(4)}">comanda id</td>													 -->
+						
 					</tbody>
 				</table>
 			</div>
