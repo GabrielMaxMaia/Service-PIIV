@@ -33,7 +33,7 @@ import com.example.services.repositories.ProdutoRepository;
 import com.example.services.repositories.UsuarioRepository;
 
 @Controller
-@RequestMapping("/pedidos")
+@RequestMapping("/pedidos/comanda")
 public class PedidoController {
 
 	@Autowired
@@ -54,42 +54,26 @@ public class PedidoController {
 	@GetMapping("/{id}/listar")
 	public ModelAndView listar(@PathVariable Long id, Model model) {
 		
-		//List<Pedido> listaPedido = new ArrayList<>();	
-
-		//listaPedido.add(pedidoRepository.findById(id).orElseThrow());
-		//model.addAttribute("Pedidos", listaPedido);	
+		comandaRepository.existsById(id); // verifica se a comanda existe
 		
-		//Optional<Pedido> optional = this.pedidoRepository.findById(id);
+		List<Pedido> listaPedido = pedidoRepository.findPedidosByComandaId(id);
 		
-		List<Pedido> listaPedido = pedidoRepository.findByComandaId(id);
-		
-		ModelAndView mv = new ModelAndView("pedido/listarPedidos");
+		ModelAndView mv = new ModelAndView("pedido/comanda/listarPedidos");
 		
 		mv.addObject("pedidos", listaPedido);
+		mv.addObject("id", id);
 		
 		return mv;
 		
-		/*if (optional.isPresent()) {
-			listaPedido.add(optional.get()) ;			
-			ModelAndView mv = new ModelAndView("pedido/listarPedidos");
-			mv.addObject("pedidos", listaPedido);
-			return mv;
-
-		} else {
-
-			return new ModelAndView("redirect:/usuarios");
-
-		}*/
-		
-		
 	}
 	
-	@GetMapping("/criar")
-	public ModelAndView form() {
-		ModelAndView mv = new ModelAndView("/pedido/CriarPedido");
+	@GetMapping("/{id}/criar")
+	public ModelAndView form(@PathVariable Long id) {
+		ModelAndView mv = new ModelAndView("/pedido/comanda/CriarPedido");
 
 		ReqNovoPedido pedido = new ReqNovoPedido();
 		mv.addObject(pedido);
+		mv.addObject("id", id);
 						
 		// lista de produtos
 		List<Produto> produtos = this.produtoRepository.findAll();
@@ -98,14 +82,14 @@ public class PedidoController {
 		return mv;
 	}
 	
-	@PostMapping("")
-	public ModelAndView create(@Valid ReqNovoPedido reqpedido, BindingResult bindingResult) {
+	@PostMapping("/{id}")
+	public ModelAndView create(@PathVariable Long id, @Valid ReqNovoPedido reqpedido, BindingResult bindingResult) {
 		// binding result é um parametro do validation do spring utilizado em conjunto
 		// com o @valid
 		if (bindingResult.hasErrors()) {
 			System.out.println(reqpedido);
 			System.out.println(bindingResult.toString());
-			ModelAndView mv = new ModelAndView("pedido/CriarPedido");
+			ModelAndView mv = new ModelAndView("pedido/comanda/CriarPedido");
 			return mv;
 		} else {
 			
@@ -114,8 +98,7 @@ public class PedidoController {
 			pedido.setProduto(reqpedido.getProduto());
 			pedido.setQuantidade(reqpedido.getQuantidade());
 			pedido.setObservacao(reqpedido.getObservacao());
-			
-			Long id = this.comandaRepository.findComanda();	
+				
 			Optional<Comanda> optional = this.comandaRepository.findById(id);
 			Comanda comanda = optional.get();
 			pedido.setComanda(comanda);	
@@ -123,7 +106,7 @@ public class PedidoController {
 			pedido.setHoraDoPedido(OffsetDateTime.now());
 			pedido.setStatus("preparacao");		
 			
-			Optional<Usuario> optional2 = this.usuarioRepository.findById(6l);//verificar	a forma que será recuperado o usuario para salvar o pedido	
+			Optional<Usuario> optional2 = this.usuarioRepository.findById(2l);//verificar	a forma que será recuperado o usuario para salvar o pedido	
 			Usuario usuario = optional2.get();			
 			pedido.setUsuario(usuario);
 			
@@ -133,9 +116,9 @@ public class PedidoController {
 
 	}
 	
-	@RequestMapping(value = "/pedidos/listar", method = RequestMethod.GET)			
+	@RequestMapping(value = "/pedidos/comanda/listar", method = RequestMethod.GET)			
 	public ModelAndView redirecionar(Long id, BindingResult bindingResult) {			
-		ModelAndView mv = new ModelAndView("redirect:/pedidos/"+id+"/listar");		
+		ModelAndView mv = new ModelAndView("redirect:/pedidos/"+"comanda/"+id+"/listar");		
 		return mv;
 	}
 }

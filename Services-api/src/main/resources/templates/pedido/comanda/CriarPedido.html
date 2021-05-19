@@ -26,7 +26,7 @@
 <body>
 	<header th:replace="~{fragmentos :: header('Cadastro de Pedidos')}"></header>
 	<div class="container">
-		<form method="POST" th:object="${reqNovoPedido}" th:action="@{/pedidos}">
+		<form method="POST" th:object="${reqNovoPedido}" th:action="@{/pedidos/comanda/{id}(id = ${id})}">
 			<div class="form-row">
 
 				<div class="form-group col-md-8">

@@ -81,10 +81,10 @@ public class ComandaController {
 	}
 	
 	//metodo para redirecionar para tela de pedido assim que criar a comanda
-	@RequestMapping(value = "/pedidos/listar", method = RequestMethod.GET)			
+	@RequestMapping(value = "/pedidos/comanda/listar", method = RequestMethod.GET)			
 	public ModelAndView redirecionar(@Valid Comanda comanda, BindingResult bindingResult) {
 		Long id = this.comandaRepository.findComanda();		
-		ModelAndView mv = new ModelAndView("redirect:/pedidos/"+id+"/listar");		
+		ModelAndView mv = new ModelAndView("redirect:/pedidos/"+"comanda/"+id+"/listar");		
 		return mv;
 	}
 	
