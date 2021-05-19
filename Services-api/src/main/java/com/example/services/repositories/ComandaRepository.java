@@ -6,6 +6,6 @@ import com.example.services.Model.Comanda;
 
 public interface ComandaRepository extends JpaRepository<Comanda, Long>{
 	
-	@Query(value ="SELECT LAST_INSERT_ID()", nativeQuery = true)
+	@Query(value ="select max(id) from comanda", nativeQuery = true)
 	Long findComanda();
 }

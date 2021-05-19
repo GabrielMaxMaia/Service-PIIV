@@ -29,14 +29,7 @@
 							<td th:text="${pedido.observacao}">observacao</td>
 							<td th:text="${pedido.comanda.id}">comanda id</td>
 							<td th:text="${pedido.quantidade}">quantidade</td>
-							<td th:text="${pedido.produto.id}">produto id</td>
-							<td>
-								<a th:href="@{/pedidos/{pedidoId}/editar(pedidoId = ${pedido.id})}">
-								<button type="submit" class="btn btn-primary">Editar</button></a>
-							
-								<a th:href="@{/pedidos/{pedidoId}/deletar(pedidoId = ${pedido.id})}">
-								<button type="submit" class="btn btn-danger">Excluir</button></a>	
-							</td>
+							<td th:text="${pedido.produto.id}">produto id</td>							
 						</tr>
 					</tbody>
 				</table>
