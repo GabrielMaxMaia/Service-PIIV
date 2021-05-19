@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
+import com.example.services.Security.Util.GeradorDeSenha;
+
 @Entity
 @Table(name = "usuario")
 public class Usuario {
@@ -31,6 +33,7 @@ public class Usuario {
 	
 	@NotNull
 	private String senha;
+	
 	
 	@ManyToMany(fetch = FetchType.EAGER)						//toda vez que eu buscar os usuario já traz as permissoes dele
 	@JoinTable(name = "usuario_permissao",						//onde vou estar relacionando com a tabela Usuario_Permissao
@@ -69,7 +72,9 @@ public class Usuario {
 	}
 
 	public void setSenha(String senha) {
-		this.senha = senha;
+		GeradorDeSenha encrypt = new GeradorDeSenha();
+		String encoder = encrypt.EncryptaSenhaUser(senha);
+		this.senha = encoder;
 	}	
 
 	public List<Permissao> getPermissoes() {
