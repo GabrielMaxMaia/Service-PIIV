@@ -66,7 +66,6 @@ public class UsuarioController {
 			this.usuarioRepository.save(usuario);			
 			return new ModelAndView("redirect:/usuarios");
 		}
-
 	}
 
 	@GetMapping("/{id}/editar")
