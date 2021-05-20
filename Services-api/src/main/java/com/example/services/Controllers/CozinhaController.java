@@ -1,6 +1,7 @@
 package com.example.services.Controllers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.services.Model.Pedido;
+import com.example.services.dto.ReqCozinha;
 import com.example.services.repositories.CozinhaRepository;
 import com.example.services.repositories.PedidoRepository;
 
@@ -27,13 +29,10 @@ public class CozinhaController {
 	public ModelAndView listar(Model model) {
 
 		List<String> listaPedido = cozinhaRepository.findPedidos();
-
-		List<String> id = new ArrayList<>();
-		List<String> nome = new ArrayList<>();
-		List<String> quantidade = new ArrayList<>();
-		List<String> observacao = new ArrayList<>();
-		List<String> status = new ArrayList<>();
-
+				
+		List<ReqCozinha> listar = new ArrayList<>();		
+		
+		
 		for (int i = 0; i < listaPedido.size(); i++) {
 
 			String linha = " ";
@@ -42,23 +41,24 @@ public class CozinhaController {
 			linha = listaPedido.get(i);
 
 			vLinha = linha.split(",");
+			
+			ReqCozinha cozinha = new ReqCozinha();			
+			
 
-			id.add(vLinha[0]);
-			nome.add(vLinha[1]);
-			quantidade.add(vLinha[2]);
-			observacao.add(vLinha[3]);
-			status.add(vLinha[4]);
-
+			cozinha.setId(Long.parseLong(vLinha[0]));
+			cozinha.setNome(vLinha[1]);
+			cozinha.setQuantidade(Integer.parseInt(vLinha[2]));
+			cozinha.setObservacao(vLinha[3]);
+			cozinha.setStatus(vLinha[4]);
+			
+			listar.add(cozinha);
+			
 		}
 
-		ModelAndView mv = new ModelAndView("cozinha/listarPedidos");
-
+		ModelAndView mv = new ModelAndView("cozinha/listarPedidos");	
 		
-		mv.addObject("ids", id);
-		mv.addObject("nomes", nome);
-		mv.addObject("quantidades", quantidade);
-		mv.addObject("observacoes", observacao);
-		mv.addObject("status", status);
+		
+		mv.addObject("listar",listar);				
 
 		return mv;
 

@@ -7,7 +7,7 @@ public class GeradorDeSenha {
 	/*public static void main(String[] args) {
 		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		String senha = encoder.encode("maria12");
+		String senha = encoder.encode("admin");
 		
 		System.out.println("Senha Encodada : { " + senha + " }");
 	}*/

@@ -1,51 +1,51 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{fragmentos :: head('Lista de Pedidos')}"></head>
+<head th:replace="~{fragmentos :: head('Dashboard')}"></head>
 
 <body>
-	<header th:replace="~{fragmentos :: header('Lista de Pedidos')}"></header>
+	<header th:replace="~{fragmentos :: header('Dashboard')}"></header>
 	<div class="container">
-			<div class="col-12">
-				<table class="table" style="margin-top: .85em; text-align:center;">
-					<thead style="background-color: #F5F5F5;">
-						<tr>
-							
-							<th scope="col-2">Codigo do pedido</th>
-							<th scope="col-2">Prato</th>
-							<th scope="col-2">quantidade</th>
-							<th scope="col-2">Observação</th>									
-							<th scope="col-2">Status</th>
-																
-							
-						</tr>
-					</thead>
-					
-					<tbody>
-						<tr th:each="id : ${ids}">
+		<div class="col-12">
+			<table class="table" style="margin-top: .85em; text-align: center;">
+				<thead style="background-color: #F5F5F5;">
+					<tr>
+
+						<th scope="col-2">Codigo do pedido</th>
+						<th scope="col-2">Prato</th>
+						<th scope="col-2">quantidade</th>
+						<th scope="col-2">Observação</th>
+						<th scope="col-2">Status</th>
+
+
+					</tr>
+				</thead>
+
+				<tbody>
+
+					<tr th:each="l : ${listar} ">
+
+						<th scope="row" th:text="${l.getId()}">id</th>
+
+						<td th:text="${l.nome}">Nome do produto</td>
+
+						<td th:text="${l.quantidade}">Nome da
+							Categoria</td>
+
+						<td th:text="${l.observacao}">Descricao</td>
+
+						<td th:text="${l.status}">Valor</td>
+
 						
-						 	<th scope="row" th:text="${id}">codigo da mesa</th>
-						  	
-						</tr>
-						
-						<tr th:each ="nome : ${nomes}">
-						
-							<td scope="row" th:text="${nome}">Prato</td>
-						</tr>
-						
-<!-- 							<td th:text="${pedido.get(1)}">status</td> -->
-<!-- 							<td th:text="${pedido.get(2)}">hora do pedido</td> -->
-<!-- 							<td th:text="${pedido.get(3)}">observacao</td> -->
-<!-- 							<td th:text="${pedido.get(4)}">comanda id</td>													 -->
-						
-					</tbody>
-				</table>
-			</div>
-			
-			<div class="row">
-				<a th:href="@{/pedidos/comanda/{id}/criar(id = ${id})}">Novo Pedido</a>
-			</div>
+					</tr>
+
+				</tbody>
+
+			</table>
 		</div>
+		
+	</div>
 	</div>
 
 
@@ -54,10 +54,12 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
 		crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
 		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
 		crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
 		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 		crossorigin="anonymous"></script>
 </body>
