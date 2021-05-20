@@ -1,8 +1,13 @@
 package com.example.services.Controllers;
 
 import java.util.List;
+import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +18,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.services.Model.Comanda;
 import com.example.services.Model.Mesa;
 import com.example.services.Model.Pedido;
+import com.example.services.Model.Usuario;
 import com.example.services.repositories.ComandaRepository;
 import com.example.services.repositories.MesaRepository;
 import com.example.services.repositories.PedidoRepository;
+import com.example.services.repositories.UsuarioRepository;
 
 @Controller
 @RequestMapping("/garcons")
@@ -29,6 +36,9 @@ public class GarconController {
 	
 	@Autowired
 	private PedidoRepository pedidoRepository;
+	
+	@Autowired
+	private UsuarioRepository usuarioRepository;
 	
 	@GetMapping
 	public String listar(Model model) {
@@ -60,7 +70,16 @@ public class GarconController {
 	public ModelAndView listarComanda(@PathVariable Long id) {
 		
 		if(comandaRepository.existsById(id)) {
-			List<Pedido> listaPedido = pedidoRepository.findPedidosByComandaId(id);
+			
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			
+			Optional<Usuario> usuarioop = usuarioRepository.findByEmail(auth.getName());
+			
+			Usuario usuario = usuarioop.get();
+			
+			Long idusu = usuario.getCodigo();
+			
+			List<Pedido> listaPedido = pedidoRepository.findPedidosByComandaId(id, idusu);
 			ModelAndView mv = new ModelAndView("pedido/comanda/listarPedidos");
 			
 			mv.addObject("pedidos", listaPedido);

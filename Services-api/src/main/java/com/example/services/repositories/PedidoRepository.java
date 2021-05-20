@@ -10,6 +10,6 @@ import com.example.services.Model.Pedido;
 
 public interface PedidoRepository extends JpaRepository<Pedido, Long>{
 
-	@Query(value ="select * from pedido where comanda_id = :comanda_id", nativeQuery = true)
-	List<Pedido> findPedidosByComandaId(@Param("comanda_id") Long comanda_id);
+	@Query(value ="select * from pedido where comanda_id = :comanda_id and cod_usuario = :id_usuario", nativeQuery = true)
+	List<Pedido> findPedidosByComandaId(@Param("comanda_id") Long comanda_id, @Param("id_usuario") Long id_usuario);
 }

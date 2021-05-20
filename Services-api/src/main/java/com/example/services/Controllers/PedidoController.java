@@ -4,9 +4,13 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.jsf.FacesContextUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.services.Model.Comanda;
@@ -48,25 +53,34 @@ public class PedidoController {
 	private UsuarioRepository usuarioRepository;
 
 	@GetMapping("/{id}/listar")
-	public ModelAndView listar(@PathVariable Long id, Model model) {
-		
-		 // verifica se a comanda existe
-		
-		if(comandaRepository.existsById(id)) {
-			List<Pedido> listaPedido = pedidoRepository.findPedidosByComandaId(id);
+	public ModelAndView listar(@PathVariable Long id) {
+
+		// verifica se a comanda existe
+
+		if (comandaRepository.existsById(id)) {
+
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+			Optional<Usuario> usuarioop = usuarioRepository.findByEmail(auth.getName());
+
+			Usuario usuario = usuarioop.get();
+
+			Long idusu = usuario.getCodigo();
+
+			List<Pedido> listaPedido = pedidoRepository.findPedidosByComandaId(id, idusu);
 			ModelAndView mv = new ModelAndView("pedido/comanda/listarPedidos");
-			
+
 			mv.addObject("pedidos", listaPedido);
 			mv.addObject("id", id);
-			
+
 			return mv;
-		}else {
-			ModelAndView mv = new ModelAndView("pedido/comanda/erroComanda");			
-			return mv;		
-		}	
-		
+		} else {
+			ModelAndView mv = new ModelAndView("pedido/comanda/erroComanda");
+			return mv;
+		}
+
 	}
-	
+
 	@GetMapping("/{id}/criar")
 	public ModelAndView form(@PathVariable Long id) {
 		ModelAndView mv = new ModelAndView("/pedido/comanda/CriarPedido");
@@ -74,14 +88,14 @@ public class PedidoController {
 		ReqNovoPedido pedido = new ReqNovoPedido();
 		mv.addObject(pedido);
 		mv.addObject("id", id);
-						
+
 		// lista de produtos
 		List<Produto> produtos = this.produtoRepository.findAll();
 		mv.addObject("produtos", produtos);
-		
+
 		return mv;
 	}
-	
+
 	@PostMapping("/{id}")
 	public ModelAndView create(@PathVariable Long id, @Valid ReqNovoPedido reqpedido, BindingResult bindingResult) {
 		// binding result é um parametro do validation do spring utilizado em conjunto
@@ -92,33 +106,34 @@ public class PedidoController {
 			ModelAndView mv = new ModelAndView("pedido/comanda/CriarPedido");
 			return mv;
 		} else {
+
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			Optional<Usuario> usuarioop = usuarioRepository.findByEmail(auth.getName());
+			Usuario usuario = usuarioop.get();
 			
 			Pedido pedido = new Pedido();
-			
+
 			pedido.setProduto(reqpedido.getProduto());
 			pedido.setQuantidade(reqpedido.getQuantidade());
 			pedido.setObservacao(reqpedido.getObservacao());
-				
+
 			Optional<Comanda> optional = this.comandaRepository.findById(id);
 			Comanda comanda = optional.get();
-			pedido.setComanda(comanda);	
-			pedido.setMesa(comanda.getMesa());			
+			pedido.setComanda(comanda);
+			pedido.setMesa(comanda.getMesa());
 			pedido.setHoraDoPedido(OffsetDateTime.now());
-			pedido.setStatus("preparacao");		
-			
-			Optional<Usuario> optional2 = this.usuarioRepository.findById(2l);//verificar	a forma que será recuperado o usuario para salvar o pedido	
-			Usuario usuario = optional2.get();			
+			pedido.setStatus("preparacao");
 			pedido.setUsuario(usuario);
-			
-			this.pedidoRepository.save(pedido);			
-			return redirecionar(comanda.getId(),bindingResult);
+
+			this.pedidoRepository.save(pedido);
+			return redirecionar(comanda.getId(), bindingResult);
 		}
 
 	}
-	
-	@RequestMapping(value = "/pedidos/comanda/listar", method = RequestMethod.GET)			
-	public ModelAndView redirecionar(Long id, BindingResult bindingResult) {			
-		ModelAndView mv = new ModelAndView("redirect:/pedidos/"+"comanda/"+id+"/listar");		
+
+	@RequestMapping(value = "/pedidos/comanda/listar", method = RequestMethod.GET)
+	public ModelAndView redirecionar(Long id, BindingResult bindingResult) {
+		ModelAndView mv = new ModelAndView("redirect:/pedidos/" + "comanda/" + id + "/listar");
 		return mv;
 	}
 }
