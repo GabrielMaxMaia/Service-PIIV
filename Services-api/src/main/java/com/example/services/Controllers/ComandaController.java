@@ -21,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.services.Model.Comanda;
 import com.example.services.Model.Mesa;
-import com.example.services.Model.Produto;
 import com.example.services.repositories.ComandaRepository;
 import com.example.services.repositories.MesaRepository;
 import com.example.services.repositories.ProdutoRepository;

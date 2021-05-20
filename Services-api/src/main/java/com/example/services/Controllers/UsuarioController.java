@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.services.Model.Mesa;
 import com.example.services.Model.Permissao;
 import com.example.services.Model.Usuario;
 import com.example.services.dto.RequisicaoNovoUsuario;
