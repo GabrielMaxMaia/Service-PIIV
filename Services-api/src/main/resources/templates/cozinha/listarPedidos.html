@@ -18,34 +18,29 @@
 						<th scope="col-2">Observação</th>
 						<th scope="col-2">Status</th>
 
-
 					</tr>
 				</thead>
 
 				<tbody>
-
 					<tr th:each="l : ${listar} ">
-
+					
 						<th scope="row" th:text="${l.getId()}">id</th>
-
-						<td th:text="${l.nome}">Nome do produto</td>
-
-						<td th:text="${l.quantidade}">Nome da
-							Categoria</td>
-
-						<td th:text="${l.observacao}">Descricao</td>
-
-						<td th:text="${l.status}">Valor</td>
-
+						<td th:text="${l.nome}">Nome do Produto</td>
+						<td th:text="${l.quantidade}">Quantidade</td>
+						<td th:text="${l.observacao}">Observação</td>
+						<td th:text="${l.status}">Status</td> 
+						<td>
+							<a th:href="@{/cozinha/atualizar/{id}(id = ${l.getId()})}">
+							<button type="submit" class="btn btn-primary">Pronto</button></a>
+						</td>
 						
 					</tr>
-
 				</tbody>
 
 			</table>
+			
 		</div>
 		
-	</div>
 	</div>
 
 
