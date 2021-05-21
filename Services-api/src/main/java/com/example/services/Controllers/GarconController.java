@@ -3,8 +3,6 @@ package com.example.services.Controllers;
 import java.util.List;
 import java.util.Optional;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -41,7 +39,7 @@ public class GarconController {
 	private UsuarioRepository usuarioRepository;
 	
 	@GetMapping
-	public String listar(Model model) {
+	public String listarMesas(Model model) {
 		// lista de mesa
 		List<Mesa> mesas = this.mesaRepository.findAll();
 		model.addAttribute("mesas", mesas);
@@ -51,7 +49,12 @@ public class GarconController {
 	@GetMapping("/mesa/{id}")
 	public ModelAndView listarPorMesa(@PathVariable Long id) {
 		
-		List<Comanda> comandas = comandaRepository.comandasPorMesa(id);
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Optional<Usuario> usuarioop = usuarioRepository.findByEmail(auth.getName());
+		Usuario usuario = usuarioop.get();
+		Long idusu = usuario.getCodigo();
+		
+		List<Comanda> comandas = comandaRepository.comandasPorMesa(id, idusu);
 		
 		if(comandas.isEmpty()) {
 			
@@ -72,11 +75,8 @@ public class GarconController {
 		if(comandaRepository.existsById(id)) {
 			
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-			
 			Optional<Usuario> usuarioop = usuarioRepository.findByEmail(auth.getName());
-			
 			Usuario usuario = usuarioop.get();
-			
 			Long idusu = usuario.getCodigo();
 			
 			List<Pedido> listaPedido = pedidoRepository.findPedidosByComandaId(id, idusu);

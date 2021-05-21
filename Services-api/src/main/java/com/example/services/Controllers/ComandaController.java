@@ -7,6 +7,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,9 +21,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.services.Model.Comanda;
 import com.example.services.Model.Mesa;
+import com.example.services.Model.Usuario;
+import com.example.services.dto.ReqComanda;
 import com.example.services.repositories.ComandaRepository;
 import com.example.services.repositories.MesaRepository;
-import com.example.services.repositories.ProdutoRepository;
+import com.example.services.repositories.UsuarioRepository;
 
 @Controller
 @RequestMapping("/comandas")
@@ -33,8 +37,8 @@ public class ComandaController {
 	@Autowired
 	private ComandaRepository comandaRepository;
 	
-	@Autowired
-	private ProdutoRepository produtoRepository;
+	@Autowired 
+	private UsuarioRepository usuarioRepository;
 	
 	@GetMapping
 	public String listar(Model model) {
@@ -65,12 +69,24 @@ public class ComandaController {
 	
 	
 	@PostMapping("")	
-	public ModelAndView create(@Valid Comanda comanda, BindingResult bindingResult) {
+	public ModelAndView create(@Valid ReqComanda reqcomanda, BindingResult bindingResult) {
+		
+		Comanda comanda = new Comanda();
 		
 		if (bindingResult.hasErrors()) {
 			ModelAndView mv = new ModelAndView("/comanda/criaComanda");				
 			return mv;
 		} else {			
+			
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			Optional<Usuario> usuarioop = usuarioRepository.findByEmail(auth.getName());
+			Usuario usuario = usuarioop.get();
+			
+			comanda.setId(reqcomanda.getId());
+			comanda.setMesa(reqcomanda.getMesa());
+			comanda.setStatus("aberta");
+			comanda.setUsuario(usuario);
+			
 			this.comandaRepository.save(comanda);
 		}
 			// chamada do metodo que redireciona apos criar a comanda

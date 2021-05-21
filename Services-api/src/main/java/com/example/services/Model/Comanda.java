@@ -17,13 +17,18 @@ public class Comanda {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	
 	@NotNull
 	@ManyToOne 							
 	@JoinColumn(name = "cod_mesa")
 	private Mesa mesa;
 
-
+	private String status;
+	
+	@NotNull
+	@ManyToOne   						
+	@JoinColumn(name = "usuario_codigo")
+	private Usuario usuario;
+	
 	public Long getId() {
 		return id;
 	}
@@ -41,6 +46,25 @@ public class Comanda {
 
 	public void setMesa(Mesa mesa) {
 		this.mesa = mesa;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 

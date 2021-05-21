@@ -13,7 +13,6 @@ public class ReqNovoPedido {
 	@JoinColumn(name = "produto_id")
 	private Produto produto;
 	
-	
 	private int quantidade;
 	
 	private String observacao;
