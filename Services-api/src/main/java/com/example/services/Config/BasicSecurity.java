@@ -44,7 +44,7 @@ public class BasicSecurity extends WebSecurityConfigurerAdapter {
 		/*
 		 * .and() .csrf().disable()
 		 */		
-		http.authorizeRequests()	        
+		http.authorizeRequests().antMatchers("/").permitAll()
 	        .anyRequest().authenticated()// Para qualquer requisição (anyRequest) é preciso estar autenticado (authenticated).
 	    .and()
 	    	.formLogin().loginPage("/entrar").permitAll()// Aqui passamos a página customizada. (permiteAll avisa o spring pra liberar o acesso pra ela)
