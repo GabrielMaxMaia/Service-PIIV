@@ -4,21 +4,21 @@
 <head th:replace="~{fragmentos :: head('Lista de Pedidos')}"></head>
 
 <body>
-	<header th:replace="~{fragmentos :: header('Lista de Pedidos')}"></header>
+	<header th:replace="~{HeaderBasico :: headerBasico()}"></header>
 	<div class="container">
-			<div class="col-12">
+			<div class="row">
 				<table class="table" style="margin-top: .85em; text-align:center;">
 					<thead style="background-color: #F5F5F5;">
-						<tr>
-							
+						<tr>							
 							<th scope="col-2">Codigo da mesa</th>
 							<th scope="col-2">Status</th>
 							<th scope="col-2">Hora do pedido</th>
-							<th scope="col-2">Observação</th>							
+							<th scope="col-2">Observação</th>
 							<th scope="col-2">Comanda id</th>
-							<th scope="col-2">quantidade</th>
+							<th scope="col-2">quantidade</th>						
 							<th scope="col-2">produto id</th>
 						</tr>
+						
 					</thead>
 					
 					<tbody>
@@ -36,10 +36,15 @@
 			</div>
 			
 			<div class="row">
-				<a th:href="@{/pedidos/comanda/{id}/criar(id = ${id})}">Novo Pedido</a>
+				<a class="btn btn-secondary" th:href="@{/garcons/pedidos/comanda/{id}/criar(id = ${id})}">Novo Pedido</a>
 			</div>
+			<br>
 			<div class="row">
-				<a th:href="@{/pedidos/comanda/{id}/criar(id = ${id})}">Finalizar comanda</a>
+				<a class="btn btn-secondary" th:href="@{/garcons/comanda/{id}/caixa(id = ${id})}">Finalizar comanda</a>
+			</div>
+			<br>
+			<div class="col" >
+				<a class="btn btn-secondary btn-sm" href="javascript:history.back()">Voltar</a>
 			</div>
 	</div>
 

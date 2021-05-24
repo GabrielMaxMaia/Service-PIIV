@@ -3,13 +3,12 @@
 
 <head th:replace="~{fragmentos :: head('dashboard')}"><meta charset="UTF-8"></head>
 
-<body>
-	<header th:replace="~{HeaderBasico :: headerBasico()}"></header>
 
-	<div class="jumbotron text-center">
-		<h1>Comandas</h1>	
-		<a href="/garcons/comandas/criar" class="btn btn-secondary">Adicionar Comanda</a>
-	</div>
+
+<body>
+	<header th:replace="~{fragmentos :: header('DashBoard')}"></header>
+
+	
 	<div class="text-center">
 		<h4>Gerenciamento das Mesas</h4>		
 	</div>
@@ -17,14 +16,15 @@
 		<div class="row mx-lg-n5">
 			<th:block th:each="mesa : ${mesas}">
 				<div class="col py-3 px-lg-5 border bg-light text-center" >					
-						<a th:href="@{/garcons/mesa/{id}(id = ${mesa.getId()})}">
+						<a th:href="@{/dashAdm/mesa/{id}(id = ${mesa.getId()})}">
 							<button type="submit" class="btn btn-secondary" th:utext="${'Mesa '+mesa.numero}"></button></a>
 				
 				</div>				
 			</th:block>
 		</div>
 	</div>
-
+	
+	
 
 </body>
 

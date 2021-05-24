@@ -64,14 +64,14 @@ public class PedidoController {
 			Long idusu = usuario.getCodigo();
 
 			List<Pedido> listaPedido = pedidoRepository.findPedidosByComandaId(id, idusu);
-			ModelAndView mv = new ModelAndView("pedido/comanda/listarPedidos");
+			ModelAndView mv = new ModelAndView("administracao/pedido/comanda/listarPedidos");
 
 			mv.addObject("pedidos", listaPedido);
 			mv.addObject("id", id);
 
 			return mv;
 		} else {
-			ModelAndView mv = new ModelAndView("pedido/comanda/erroComanda");
+			ModelAndView mv = new ModelAndView("administracao/pedido/comanda/erroComanda");
 			return mv;
 		}
 
@@ -79,7 +79,7 @@ public class PedidoController {
 
 	@GetMapping("/{id}/criar")
 	public ModelAndView form(@PathVariable Long id) {
-		ModelAndView mv = new ModelAndView("/pedido/comanda/CriarPedido");
+		ModelAndView mv = new ModelAndView("administracao/pedido/comanda/CriarPedido");
 
 		ReqNovoPedido pedido = new ReqNovoPedido();
 		mv.addObject(pedido);
@@ -99,13 +99,14 @@ public class PedidoController {
 		if (bindingResult.hasErrors()) {
 			System.out.println(reqpedido);
 			System.out.println(bindingResult.toString());
-			ModelAndView mv = new ModelAndView("pedido/comanda/CriarPedido");
+			ModelAndView mv = new ModelAndView("administracao/pedido/comanda/CriarPedido");
 			return mv;
 		} else {
 
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			Optional<Usuario> usuarioop = usuarioRepository.findByEmail(auth.getName());
 			Usuario usuario = usuarioop.get();
+			
 			
 			Pedido pedido = new Pedido();
 

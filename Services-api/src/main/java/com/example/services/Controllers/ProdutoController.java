@@ -29,7 +29,7 @@ public class ProdutoController {
 	
 	@GetMapping
 	public ModelAndView listar() {
-		ModelAndView modelView = new ModelAndView("produto/listarProdutos");
+		ModelAndView modelView = new ModelAndView("administracao/produto/listarProdutos");
 		modelView.addObject("produtos",produtoRepository.findAll());
 		return modelView;
 	}
@@ -42,7 +42,7 @@ public class ProdutoController {
 	
 	@GetMapping("/criar")
 	public ModelAndView formulario () {
-		ModelAndView modelView = new ModelAndView("produto/produtoForm");
+		ModelAndView modelView = new ModelAndView("administracao/produto/produtoForm");
 		Produto produto = new Produto();
 		modelView.addObject(produto);
 		

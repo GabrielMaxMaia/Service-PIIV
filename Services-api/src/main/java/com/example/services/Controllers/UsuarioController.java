@@ -35,14 +35,14 @@ public class UsuarioController {
 	public ModelAndView listar() {
 
 		List<Usuario> usuarios = this.usuarioRepository.findAll();
-		ModelAndView mv = new ModelAndView("usuarios/ListaDeUsuarios");
+		ModelAndView mv = new ModelAndView("administracao/usuarios/ListaDeUsuarios");
 		mv.addObject("usuarios", usuarios);
 		return mv;
 	}
 
 	@GetMapping("/criar")
 	public ModelAndView criar() {
-		ModelAndView mv = new ModelAndView("usuarios/CriarUsuario");
+		ModelAndView mv = new ModelAndView("administracao/usuarios/CriarUsuario");
 		RequisicaoNovoUsuario requisicao = new RequisicaoNovoUsuario();
 		mv.addObject(requisicao);
 
@@ -58,7 +58,7 @@ public class UsuarioController {
 		// com o @valid
 		if (bindingResult.hasErrors()) {
 
-			ModelAndView mv = new ModelAndView("usuarios/CriarUsuario");
+			ModelAndView mv = new ModelAndView("administracao/usuarios/CriarUsuario");
 			return mv;
 		} else {
 			Usuario usuario = requisicao.toUsuario();
@@ -74,7 +74,7 @@ public class UsuarioController {
 		if (optional.isPresent()) {
 			Usuario usuario = optional.get();
 			requisicao.fromUsuario(usuario);
-			ModelAndView mv = new ModelAndView("usuarios/EditarUsuario");
+			ModelAndView mv = new ModelAndView("administracao/usuarios/EditarUsuario");
 			mv.addObject("usuarioId", usuario.getCodigo());
 			return mv;
 
@@ -92,7 +92,7 @@ public class UsuarioController {
 
 		if (bindingResult.hasErrors()) {
 
-			ModelAndView mv = new ModelAndView("usuarios/editarUsuario");
+			ModelAndView mv = new ModelAndView("administracao/usuarios/editarUsuario");
 			mv.addObject("usuarioId", id);
 			return mv;
 

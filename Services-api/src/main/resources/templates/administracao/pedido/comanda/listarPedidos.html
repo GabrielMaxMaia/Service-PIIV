@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragmentos :: head('Lista de Pedidos')}"></head>
+
+<body>
+	<header th:replace="~{fragmentos :: header('Lista de Pedidos')}"></header>
+	<div class="container">
+			<div class="col-12">
+				<table class="table" style="margin-top: .85em; text-align:center;">
+					<thead style="background-color: #F5F5F5;">
+						<tr>
+							
+							<th scope="col-2">Codigo da mesa</th>
+							<th scope="col-2">Status</th>
+							<th scope="col-2">Hora do pedido</th>
+							<th scope="col-2">Observação</th>							
+							<th scope="col-2">Comanda id</th>
+							<th scope="col-2">quantidade</th>
+							<th scope="col-2">produto id</th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						<tr th:each="pedido : ${pedidos}">
+							<th scope="row" th:text="${pedido.mesa.numero}">codigo da mesa</th>
+							<td th:text="${pedido.status}">status</td>
+							<td th:text="${pedido.horaDoPedido}">hora do pedido</td>
+							<td th:text="${pedido.observacao}">observacao</td>
+							<td th:text="${pedido.comanda.id}">comanda id</td>
+							<td th:text="${pedido.quantidade}">quantidade</td>
+							<td th:text="${pedido.produto.id}">produto id</td>							
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<div class="row">
+				<a class="btn btn-primary" th:href="@{/pedidos/comanda/{id}/criar(id = ${id})}">Novo Pedido</a>
+			</div>
+			<br>
+			<div class="row">
+				<a class="btn btn-primary" th:href="@{/comandas/{id}/finalizar(id = ${id})}">Finalizar comanda</a>
+			</div>
+	</div>
+
+
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

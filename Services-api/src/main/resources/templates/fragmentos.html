@@ -1,61 +1,63 @@
 <head th:fragment="head(titulo)">
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">		
 
-	<title th:text="${titulo}">titulo de todas as paginas</title>
+<title th:text="${titulo}">titulo de todas as paginas do ADM</title>
 </head>
-<header th:fragment="header(titulo)" style="font-weight: bold;  
-											font-family: Arial, Helvetica, sans-serif;
-											color: #404C51;">
-		<div class="container mt-3">
-					<ul class="nav nav-tabs">
-						<li class="nav-item">
-							<a aria-current="page" class="nav-link"
-							th:classappend="${#httpServletRequest.getRequestURI().equals('/') ? 'active':''}"
-							href="/">Home</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link "
-							th:classappend="${#httpServletRequest.getRequestURI().startsWith('/usuarios') ? 'active':''}"
-						    href="/usuarios">usuarios</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link "
-							th:classappend="${#httpServletRequest.getRequestURI().startsWith('/categoria') ? 'active':''}"
-						    href="/categorias">categorias</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link "
-							th:classappend="${#httpServletRequest.getRequestURI().startsWith('/produtos') ? 'active':''}"
-						    href="/produtos">produtos</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link "
-							th:classappend="${#httpServletRequest.getRequestURI().startsWith('/comandas') ? 'active':''}"
-						    href="/comandas/criar">Criar Comandas</a>
-						</li>
-						<li>
-							<form action="/logout" method="post" class="navbar-form navbar-right">
-			        			
-			        			<button type="submit" class="btn btn-default">
-			        				<span class="glyphicon glyphicon-log-out"></span>
-			        					Sair
-			        			</button>
-			        			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-			      			</form>
-						</li>						
-					</ul>
-				</div>
-			
-			<div class="container mt-3">
-				<div class="row"></div>
-				<div class="col-12">
-					<h1 th:text="${titulo}">Service - Restaurantes</h1>
-				</div>
+<header th:fragment="header(titulo)"
+	style="font-weight: bold; font-family: Arial, Helvetica, sans-serif; color: #404C51;">
+	<div class="container mt-3">
+		<ul class="nav nav-tabs">
+			<li class="nav-item"><a aria-current="page" class="nav-link"
+				th:classappend="${#httpServletRequest.getRequestURI().equals('/') ? 'active':''}"
+				href="/">Home</a></li>
+			<li class="nav-item"><a class="nav-link "
+				th:classappend="${#httpServletRequest.getRequestURI().startsWith('/usuarios') ? 'active':''}"
+				href="/usuarios">usuarios</a></li>
+			<li class="nav-item"><a class="nav-link "
+				th:classappend="${#httpServletRequest.getRequestURI().startsWith('/categoria') ? 'active':''}"
+				href="/categorias">categorias</a></li>
+			<li class="nav-item"><a class="nav-link "
+				th:classappend="${#httpServletRequest.getRequestURI().startsWith('/produtos') ? 'active':''}"
+				href="/produtos">produtos</a></li>
+			<li class="nav-item"><a class="nav-link "
+				th:classappend="${#httpServletRequest.getRequestURI().startsWith('/comandas') ? 'active':''}"
+				href="/comandas/criar">Criar Comandas</a></li>
+				<li class="nav-item"><a class="nav-link " href="/dashAdm">DashBoard</a></li>
+			<div class="col text-right">
+				<ul class="nav justify-content-end">
+
+					<li class="nav-link ">Olá!
+						[[${#httpServletRequest.remoteUser}]]
+						<form action="/logout" method="post"
+							class="navbar-form navbar-right">
+
+							<button type="submit" class="btn btn-primary btn-sm">
+
+								<span class="glyphicon glyphicon-log-out"></span> Sair
+							</button>
+<!-- 							<input type="hidden" th:name="${_csrf.parameterName}" -->
+<!-- 								th:value="${_csrf.token}" /> -->
+						</form>
+					</li>
+				</ul>
 			</div>
+		</ul>
+	</div>
+
+	<div class="container mt-3">
+		<div class="row"></div>
+		<div class="col-12">
+			<h1 th:text="${titulo}">Service - Restaurantes</h1>
+		</div>
+	</div>
 </header>
+

@@ -4,7 +4,7 @@
 <head th:replace="~{fragmentos :: head('dashboard')}"></head>
 
 <body>
-
+	<header th:replace="~{HeaderBasico :: headerBasico()}"></header>
 
 	<div class="jumbotron text-center">
 		<h1>Comandas</h1>	
@@ -14,15 +14,19 @@
 		
 	</div>
 	<div class="container">	
-		<div class="row">
+		<div class="row mx-lg-n5">
 			<th:block th:each="comanda : ${comandas}">
-				<div class="col-sm-2 text-center" >
-					<h4>Comanda</h4>
+				<div class="col py-3 px-lg-5 border bg-light text-center" >
+					
 					<a th:href="@{/garcons/comanda/{id}(id = ${comanda.getId()})}">
-						<button type="submit" class="btn btn-secondary" th:utext="${comanda.getId()}"></button></a>					
+						<button type="submit" class="btn btn-secondary" th:utext="${'Comanda '+comanda.getId()}"></button></a>					
 				</div>
-			</th:block>
+			</th:block>			
+			
 		</div>
+		<div class="col text-center" >
+				<a class="btn btn-secondary btn-sm" href="javascript:history.back()">Voltar</a>
+			</div>
 	</div>
 
 

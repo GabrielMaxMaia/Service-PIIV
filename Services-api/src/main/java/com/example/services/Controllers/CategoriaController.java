@@ -20,7 +20,7 @@ public class CategoriaController {
 	
 	@GetMapping
 	public ModelAndView listar() {
-		ModelAndView modelView = new ModelAndView("categoria/listarCategorias");
+		ModelAndView modelView = new ModelAndView("administracao/categoria/listarCategorias");
 		modelView.addObject("categorias", categoriaRepository.findAll());
 		modelView.addObject(new Categoria());
 		return modelView;

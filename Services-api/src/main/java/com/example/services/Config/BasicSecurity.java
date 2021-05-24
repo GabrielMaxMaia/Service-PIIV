@@ -51,7 +51,8 @@ public class BasicSecurity extends WebSecurityConfigurerAdapter {
 		.and()
 			.logout().logoutSuccessUrl("/entrar")//customização da url de logout, a url padrão causa bugs no login.
 		.and()
-			.httpBasic();		
+			.httpBasic()
+			.and().csrf().disable();		
 		
 
 	}

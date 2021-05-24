@@ -1,5 +1,6 @@
 package com.example.services.Controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.services.Model.Comanda;
 import com.example.services.Model.Mesa;
+import com.example.services.Model.Produto;
 import com.example.services.Model.Usuario;
 import com.example.services.dto.ReqComanda;
 import com.example.services.repositories.ComandaRepository;
@@ -44,12 +46,12 @@ public class ComandaController {
 	public String listar(Model model) {
 		List<Comanda> listaComandas = comandaRepository.findAll();
 		model.addAttribute("listaComandas", listaComandas);
-		return "/comanda/listarComanda";
+		return "/administracao/comanda/listarComanda";
 	}
 	
 	@GetMapping("/criar")
 	public ModelAndView form() {
-		ModelAndView mv = new ModelAndView("/comanda/criaComanda");
+		ModelAndView mv = new ModelAndView("/administracao/comanda/criaComanda");
 
 		Comanda comanda = new Comanda();
 		mv.addObject(comanda);
@@ -74,13 +76,15 @@ public class ComandaController {
 		Comanda comanda = new Comanda();
 		
 		if (bindingResult.hasErrors()) {
-			ModelAndView mv = new ModelAndView("/comanda/criaComanda");				
+			ModelAndView mv = new ModelAndView("/administracao/comanda/criaComanda");				
 			return mv;
 		} else {			
 			
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			Optional<Usuario> usuarioop = usuarioRepository.findByEmail(auth.getName());
 			Usuario usuario = usuarioop.get();
+			
+			List<Produto> produto = new ArrayList();
 			
 			comanda.setId(reqcomanda.getId());
 			comanda.setMesa(reqcomanda.getMesa());
@@ -107,7 +111,7 @@ public class ComandaController {
 
 		if (optional.isPresent()) {
 			Comanda comanda = optional.get();			
-			ModelAndView mv = new ModelAndView("comanda/EditarComanda");			
+			ModelAndView mv = new ModelAndView("administracao/comanda/EditarComanda");			
 			mv.addObject("comandaId", comanda.getId());
 			return mv;
 
@@ -125,7 +129,7 @@ public class ComandaController {
 
 		if (bindingResult.hasErrors()) {
 
-			ModelAndView mv = new ModelAndView("comanda/editarComanda");
+			ModelAndView mv = new ModelAndView("administracao/comanda/editarComanda");
 			mv.addObject("comandaId", id);
 			return mv;
 			
@@ -144,15 +148,27 @@ public class ComandaController {
 
 	}
 	
-	@GetMapping("{id}/deletar")
-	public String delete(@PathVariable Long id) {
-		try {
-			this.comandaRepository.deleteById(id);
-			return "redirect:/usuarios";
-		}catch(EmptyResultDataAccessException e){			
-			return "redirect:/usuarios";
+	
+	@PostMapping("/{id}/finalizar")
+	public ModelAndView finalizar(@PathVariable Long id) {
+		if (comandaRepository.existsById(id)) {			
+
+			comandaRepository.fecharComanda(id);
+			
+			return redirecionarMesas();
+		} else {
+
+			ModelAndView mv = new ModelAndView("/administracao/pedido/comanda/erroComanda");
+			return mv;
+
 		}
-		
+
+	}
+	
+	@RequestMapping(value = "DashAdm/redirecionarMesas", method = RequestMethod.GET)
+	public ModelAndView redirecionarMesas() {
+		ModelAndView mv = new ModelAndView("redirect:/dashAdm");
+		return mv;
 	}
 	
 
