@@ -67,4 +67,55 @@ public class CozinhaController {
 		return mv;
 
 	}
+
+
+	
+	
+	@GetMapping("/listar/adm")
+	public ModelAndView admlistar(Model model) {
+
+		List<String> listaPedido = cozinhaRepository.findPedidos();
+				
+		List<ReqCozinha> listar = new ArrayList<>();		
+		
+		for (int i = 0; i < listaPedido.size(); i++) {
+
+			String linha = " ";
+			String vLinha[] = null;
+
+			linha = listaPedido.get(i);
+
+			vLinha = linha.split(",");
+			
+			ReqCozinha cozinha = new ReqCozinha();			
+
+			cozinha.setId(Long.parseLong(vLinha[0]));
+			cozinha.setNome(vLinha[1]);
+			cozinha.setQuantidade(Integer.parseInt(vLinha[2]));
+			cozinha.setObservacao(vLinha[3]);
+			cozinha.setStatus(vLinha[4]);
+			
+			listar.add(cozinha);
+			
+		}
+
+		ModelAndView mv = new ModelAndView("administracao/cozinha/listarPedidos");	
+		
+		mv.addObject("listar",listar);				
+
+		return mv;
+
+	}
+	
+	@GetMapping("/atualizar/{id}/adm")
+	public ModelAndView admupdate(@PathVariable Long id, Model model) {
+
+		cozinhaRepository.atualizaPedido(id);
+
+		ModelAndView mv = new ModelAndView("redirect:/cozinha/listar/adm");			
+
+		return mv;
+
+	}
 }
+

@@ -2,6 +2,7 @@ package com.example.services.dto;
 
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import com.example.services.Model.Produto;
@@ -13,6 +14,7 @@ public class ReqNovoPedido {
 	@JoinColumn(name = "produto_id")
 	private Produto produto;
 	
+	@Min(1)
 	private int quantidade;
 	
 	private String observacao;

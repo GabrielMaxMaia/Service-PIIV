@@ -22,11 +22,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.services.Model.Comanda;
 import com.example.services.Model.Mesa;
+import com.example.services.Model.Pedido;
 import com.example.services.Model.Produto;
 import com.example.services.Model.Usuario;
+import com.example.services.dto.ReqCaixa;
 import com.example.services.dto.ReqComanda;
 import com.example.services.repositories.ComandaRepository;
 import com.example.services.repositories.MesaRepository;
+import com.example.services.repositories.PedidoRepository;
+import com.example.services.repositories.ProdutoRepository;
 import com.example.services.repositories.UsuarioRepository;
 
 @Controller
@@ -41,6 +45,12 @@ public class ComandaController {
 	
 	@Autowired 
 	private UsuarioRepository usuarioRepository;
+	
+	@Autowired
+	private PedidoRepository pedidoRepository;
+	
+	@Autowired
+	private ProdutoRepository produtoRepository;
 	
 	@GetMapping
 	public String listar(Model model) {
@@ -148,28 +158,70 @@ public class ComandaController {
 
 	}
 	
-	
-	@PostMapping("/{id}/finalizar")
-	public ModelAndView finalizar(@PathVariable Long id) {
-		if (comandaRepository.existsById(id)) {			
+	@GetMapping("/{id}/caixa")
+	public ModelAndView visualizarCaixa(@PathVariable Long id) {
+		if (!pedidoRepository.findPedidosByComandaId(id).isEmpty()) {
 
-			comandaRepository.fecharComanda(id);
+			ModelAndView mv = new ModelAndView("administracao/caixa/Caixa");
+
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+			Optional<Usuario> usuarioop = usuarioRepository.findByEmail(auth.getName());
+
+			Usuario usuario = usuarioop.get();
+
+			Long idusu = usuario.getCodigo();
+
+			List<Pedido> listaPedido = pedidoRepository.findPedidosByComandaIdAndUser(id, idusu);
 			
-			return redirecionarMesas();
+			List<ReqCaixa> listaCaixa = new ArrayList<ReqCaixa>();
+
+			for (int j = 0; j < listaPedido.size(); j++) {
+
+				Optional<Produto> p = produtoRepository.findById(listaPedido.get(j).getProduto().getId());
+				Produto pp = p.get();
+				
+				ReqCaixa caixa = new ReqCaixa();
+
+				caixa.setNome(pp.getNome());
+				caixa.setValor(pp.getValor());
+				caixa.setMesa(listaPedido.get(j).getMesa().getNumero());
+				caixa.setQuantidade(listaPedido.get(j).getQuantidade());			
+
+				listaCaixa.add(caixa);
+			}			
+			
+			mv.addObject("valorTotal",comandaRepository.findValorComanda(id));
+			mv.addObject("listaCaixa",listaCaixa);
+			mv.addObject("id",id);
+			
+			return mv;
 		} else {
 
-			ModelAndView mv = new ModelAndView("/administracao/pedido/comanda/erroComanda");
+			ModelAndView mv = new ModelAndView("redirect:/pedidos/comanda/"+id+"/listar");
 			return mv;
 
 		}
 
 	}
 	
-	@RequestMapping(value = "DashAdm/redirecionarMesas", method = RequestMethod.GET)
-	public ModelAndView redirecionarMesas() {
-		ModelAndView mv = new ModelAndView("redirect:/dashAdm");
-		return mv;
-	}
 	
+	@PostMapping("/{id}/finalizar")
+	public ModelAndView finalizar(@PathVariable Long id) {
+		if (!pedidoRepository.findPedidosByComandaId(id).isEmpty()) {			
+
+			comandaRepository.fecharComanda(id);
+			
+			comandaRepository.pagarPedido(id);
+			
+			return  new ModelAndView("redirect:/dashAdm");
+		} else {
+			
+			return new ModelAndView("redirect:/pedidos/comanda/"+id+"/listar");
+
+		}
+
+	}
+		
 
 }

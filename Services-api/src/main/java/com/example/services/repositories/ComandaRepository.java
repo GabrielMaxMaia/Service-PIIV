@@ -26,4 +26,9 @@ public interface ComandaRepository extends JpaRepository<Comanda, Long>{
 	@Transactional
 	@Query(value = "update comanda set status = 'fechada' where id = :id_comanda", nativeQuery = true)
 	void fecharComanda(@Param("id_comanda") Long id);
+	
+	@Modifying
+	@Transactional
+	@Query(value = "update pedido set status = 'pago' where comanda_id = :id_comanda", nativeQuery = true)
+	void pagarPedido(@Param("id_comanda") Long id);
 }

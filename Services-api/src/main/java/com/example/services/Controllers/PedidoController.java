@@ -63,7 +63,7 @@ public class PedidoController {
 
 			Long idusu = usuario.getCodigo();
 
-			List<Pedido> listaPedido = pedidoRepository.findPedidosByComandaId(id, idusu);
+			List<Pedido> listaPedido = pedidoRepository.findPedidosByComandaIdAndUser(id, idusu);
 			ModelAndView mv = new ModelAndView("administracao/pedido/comanda/listarPedidos");
 
 			mv.addObject("pedidos", listaPedido);
@@ -77,7 +77,7 @@ public class PedidoController {
 
 	}
 
-	@GetMapping("/{id}/criar")
+	@GetMapping("{id}/criar")
 	public ModelAndView form(@PathVariable Long id) {
 		ModelAndView mv = new ModelAndView("administracao/pedido/comanda/CriarPedido");
 
@@ -96,11 +96,10 @@ public class PedidoController {
 	public ModelAndView create(@PathVariable Long id, @Valid ReqNovoPedido reqpedido, BindingResult bindingResult) {
 		// binding result é um parametro do validation do spring utilizado em conjunto
 		// com o @valid
-		if (bindingResult.hasErrors()) {
-			System.out.println(reqpedido);
-			System.out.println(bindingResult.toString());
-			ModelAndView mv = new ModelAndView("administracao/pedido/comanda/CriarPedido");
-			return mv;
+		if (bindingResult.hasErrors()) {			
+			
+			return new ModelAndView("redirect:/pedidos/comanda/"+id+"/criar");
+			
 		} else {
 
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -123,14 +122,10 @@ public class PedidoController {
 			pedido.setUsuario(usuario);
 
 			this.pedidoRepository.save(pedido);
-			return redirecionar(comanda.getId(), bindingResult);
+			
+			return new ModelAndView("redirect:/pedidos/" + "comanda/" + id + "/listar");
 		}
 
 	}
-
-	@RequestMapping(value = "/pedidos/comanda/listar", method = RequestMethod.GET)
-	public ModelAndView redirecionar(Long id, BindingResult bindingResult) {
-		ModelAndView mv = new ModelAndView("redirect:/pedidos/" + "comanda/" + id + "/listar");
-		return mv;
-	}
+	
 }

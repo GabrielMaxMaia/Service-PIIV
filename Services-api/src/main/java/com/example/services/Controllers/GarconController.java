@@ -95,7 +95,7 @@ public class GarconController {
 			Usuario usuario = usuarioop.get();
 			Long idusu = usuario.getCodigo();
 
-			List<Pedido> listaPedido = pedidoRepository.findPedidosByComandaId(id, idusu);
+			List<Pedido> listaPedido = pedidoRepository.findPedidosByComandaIdAndUser(id, idusu);
 			ModelAndView mv = new ModelAndView("garcon/pedido/comanda/listarPedidos");
 
 			mv.addObject("pedidos", listaPedido);
@@ -150,17 +150,11 @@ public class GarconController {
 			comanda.setUsuario(usuario);
 			this.comandaRepository.save(comanda);
 		}
-		// chamada do metodo que redireciona apos criar a comanda
-		return redirecionar(comanda, bindingResult);
+				
+		return new ModelAndView("redirect:/garcons/pedidos/comanda/" + comanda.getId() + "/listar");
 	}
 
-	// metodo para redirecionar para tela de pedido assim que criar a comanda
-	@RequestMapping(value = "criandoComanda/pedidos/comanda/listar", method = RequestMethod.GET)
-	public ModelAndView redirecionar(@Valid Comanda comanda, BindingResult bindingResult) {
-		Long id = this.comandaRepository.findComanda();
-		ModelAndView mv = new ModelAndView("redirect:/garcons/pedidos/" + "comanda/" + id + "/listar");
-		return mv;
-	}
+	
 
 	@GetMapping("/comandas/{id}/editar")
 	public ModelAndView edit(@PathVariable Long id, Comanda requisicao) {
@@ -232,7 +226,7 @@ public class GarconController {
 
 			Long idusu = usuario.getCodigo();
 
-			List<Pedido> listaPedido = pedidoRepository.findPedidosByComandaId(id, idusu);
+			List<Pedido> listaPedido = pedidoRepository.findPedidosByComandaIdAndUser(id, idusu);
 			ModelAndView mv = new ModelAndView("garcon/pedido/comanda/listarPedidos");
 
 			mv.addObject("pedidos", listaPedido);
@@ -304,7 +298,7 @@ public class GarconController {
 
 	@GetMapping("/comanda/{id}/caixa")
 	public ModelAndView visualizarCaixa(@PathVariable Long id) {
-		if (comandaRepository.existsById(id)) {
+		if (!pedidoRepository.findPedidosByComandaId(id).isEmpty()) {
 
 			ModelAndView mv = new ModelAndView("garcon/caixa/Caixa");
 
@@ -316,7 +310,7 @@ public class GarconController {
 
 			Long idusu = usuario.getCodigo();
 
-			List<Pedido> listaPedido = pedidoRepository.findPedidosByComandaId(id, idusu);
+			List<Pedido> listaPedido = pedidoRepository.findPedidosByComandaIdAndUser(id, idusu);
 			
 			List<ReqCaixa> listaCaixa = new ArrayList<ReqCaixa>();
 
@@ -342,7 +336,7 @@ public class GarconController {
 			return mv;
 		} else {
 
-			ModelAndView mv = new ModelAndView("garcon/pedido/comanda/erroComanda");
+			ModelAndView mv = new ModelAndView("redirect:/garcons/comanda/"+id);
 			return mv;
 
 		}
@@ -351,24 +345,23 @@ public class GarconController {
 	
 	@PostMapping("/comanda/{id}/finalizar")
 	public ModelAndView finalizar(@PathVariable Long id) {
-		if (comandaRepository.existsById(id)) {			
+		if (!pedidoRepository.findPedidosByComandaId(id).isEmpty()) {			
 
 			comandaRepository.fecharComanda(id);
 			
-			return redirecionarMesas();
+			comandaRepository.pagarPedido(id);
+			
+			ModelAndView mv = new ModelAndView("redirect:/garcons");
+			
+			return mv;
 		} else {
 
-			ModelAndView mv = new ModelAndView("pedido/comanda/erroComanda");
+			ModelAndView mv = new ModelAndView("redirect:/garcons/comanda/"+id);
 			return mv;
 
 		}
 
 	}
 	
-	@RequestMapping(value = "garcons/redirecionarMesas", method = RequestMethod.GET)
-	public ModelAndView redirecionarMesas() {
-		ModelAndView mv = new ModelAndView("redirect:/garcons");
-		return mv;
-	}
-
+	
 }
