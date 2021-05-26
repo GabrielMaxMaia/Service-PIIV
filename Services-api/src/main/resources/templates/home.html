@@ -1,14 +1,29 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="~{fragmentos :: head('home ')}"></head>
 
 <body>
-	<header th:replace="~{fragmentos :: header('Service - Restaurantes - Home')}"></header>	
-	
-	<div class="embed-responsive embed-responsive-16by9" style="width: 0 1552px;">
-  		<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/1hBNnSgOgq8?rel=0" allowfullscreen></iframe>
-	</div>
+	<header
+		th:replace="~{fragmentos :: header('Service - Restaurantes - Home')}"></header>
+
+		<div class="embed-responsive embed-responsive-16by9" style="width: 0 1552px;">
+	  		<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/1hBNnSgOgq8?rel=0" allowfullscreen></iframe>
+		</div>
+
+<!-- 	<div> -->
+<!-- 		<span th:text="${lanches.get(0).getCategoria().getNome()}"> </span> -->
+<!-- 		<br> -->
+		
+<!-- 		<th:block th:each="lanche : ${lanches}"> -->
+
+<!-- 			<span th:text="${lanche.nome}"> </span> -->
+<!-- 			<br> -->
+
+<!-- 		</th:block> -->
+<!-- 	</div> -->
+
 </body>
 
 </html>

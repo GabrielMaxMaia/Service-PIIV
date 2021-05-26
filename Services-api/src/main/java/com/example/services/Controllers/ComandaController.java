@@ -7,7 +7,6 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -93,8 +92,6 @@ public class ComandaController {
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			Optional<Usuario> usuarioop = usuarioRepository.findByEmail(auth.getName());
 			Usuario usuario = usuarioop.get();
-			
-			List<Produto> produto = new ArrayList();
 			
 			comanda.setId(reqcomanda.getId());
 			comanda.setMesa(reqcomanda.getMesa());

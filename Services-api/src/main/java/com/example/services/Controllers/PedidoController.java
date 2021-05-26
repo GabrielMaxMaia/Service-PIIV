@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.services.Model.Comanda;
@@ -24,7 +23,6 @@ import com.example.services.Model.Produto;
 import com.example.services.Model.Usuario;
 import com.example.services.dto.ReqNovoPedido;
 import com.example.services.repositories.ComandaRepository;
-import com.example.services.repositories.MesaRepository;
 import com.example.services.repositories.PedidoRepository;
 import com.example.services.repositories.ProdutoRepository;
 import com.example.services.repositories.UsuarioRepository;
@@ -32,9 +30,6 @@ import com.example.services.repositories.UsuarioRepository;
 @Controller
 @RequestMapping("/pedidos/comanda")
 public class PedidoController {
-
-	@Autowired
-	private MesaRepository mesaRepository;
 
 	@Autowired
 	private ComandaRepository comandaRepository;
@@ -125,7 +120,5 @@ public class PedidoController {
 			
 			return new ModelAndView("redirect:/pedidos/" + "comanda/" + id + "/listar");
 		}
-
 	}
-	
 }

@@ -17,18 +17,47 @@
 						<th scope="col-2">quantidade</th>
 						<th scope="col-2">Observação</th>
 						<th scope="col-2">Status</th>
-
+						<th scope="col-2"></th>
 					</tr>
 				</thead>
 
 				<tbody>
-					<tr th:each="l : ${listar} ">
-					
+				
+					<tr th:each="l : ${listar}" th:if="${l.verificaTempo() == 3}" style="background-color: red;;">
+
 						<th scope="row" th:text="${l.getId()}">id</th>
 						<td th:text="${l.nome}">Nome do Produto</td>
 						<td th:text="${l.quantidade}">Quantidade</td>
 						<td th:text="${l.observacao}">Observação</td>
-						<td th:text="${l.status}">Status</td> 
+						<td th:if="${l.status.equals('nao')}"th:text="Preparação">Status</td> 
+						<td>
+							<a th:href="@{/cozinha/atualizar/{id}(id = ${l.getId()})}">
+							<button type="submit" class="btn btn-primary">Pronto</button></a>
+						</td>
+						
+					</tr>
+					
+					<tr th:each="l : ${listar}" th:if="${l.verificaTempo() == 2}" style="background-color: yellow;">
+
+						<th scope="row" th:text="${l.getId()}">id</th>
+						<td th:text="${l.nome}">Nome do Produto</td>
+						<td th:text="${l.quantidade}">Quantidade</td>
+						<td th:text="${l.observacao}">Observação</td>
+						<td th:if="${l.status.equals('nao')}"th:text="Preparação">Status</td> 
+						<td>
+							<a th:href="@{/cozinha/atualizar/{id}(id = ${l.getId()})}">
+							<button type="submit" class="btn btn-primary">Pronto</button></a>
+						</td>
+						
+					</tr>
+					
+					<tr th:each="l : ${listar}" th:if="${l.verificaTempo() == 1}" style="background-color: green;">
+
+						<th scope="row" th:text="${l.getId()}">id</th>
+						<td th:text="${l.nome}">Nome do Produto</td>
+						<td th:text="${l.quantidade}">Quantidade</td>
+						<td th:text="${l.observacao}">Observação</td>
+						<td th:if="${l.status.equals('nao')}"th:text="Preparação">Status</td> 
 						<td>
 							<a th:href="@{/cozinha/atualizar/{id}(id = ${l.getId()})}">
 							<button type="submit" class="btn btn-primary">Pronto</button></a>
