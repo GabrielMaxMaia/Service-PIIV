@@ -58,6 +58,34 @@ public class ComandaController {
 		return "/administracao/comanda/listarComanda";
 	}
 	
+	@GetMapping("/comanda/{id}")
+	public ModelAndView listarComanda(@PathVariable Long id) {
+
+		if (comandaRepository.existsById(id)) {
+
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			Optional<Usuario> usuarioop = usuarioRepository.findByEmail(auth.getName());
+			Usuario usuario = usuarioop.get();
+			Long idusu = usuario.getCodigo();
+
+			List<Pedido> listaPedido = pedidoRepository.findPedidosByComandaIdAndUser(id, idusu);
+			ModelAndView mv = new ModelAndView("administracao/pedido/comanda/listarPedidos");
+			
+			Optional<Comanda> comandaop = comandaRepository.findById(id);
+			Comanda comanda = comandaop.get();
+			
+			mv.addObject("comanda", comanda);
+
+			mv.addObject("pedidos", listaPedido);
+			mv.addObject("id", id);
+
+			return mv;
+		} else {
+			ModelAndView mv = new ModelAndView("administracao/pedido/comanda/erroComanda");
+			return mv;
+		}
+	}
+	
 	@GetMapping("/criar")
 	public ModelAndView form() {
 		ModelAndView mv = new ModelAndView("/administracao/comanda/criaComanda");

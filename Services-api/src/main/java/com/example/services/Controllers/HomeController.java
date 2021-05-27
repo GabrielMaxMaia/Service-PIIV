@@ -62,4 +62,9 @@ public class HomeController {
         return "entrar";
     }
 	
+	@GetMapping("/acessoNegado")
+    public String negar() {
+        return "acessoNegado";
+    }
+	
 }

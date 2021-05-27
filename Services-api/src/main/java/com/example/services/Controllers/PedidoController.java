@@ -60,6 +60,12 @@ public class PedidoController {
 
 			List<Pedido> listaPedido = pedidoRepository.findPedidosByComandaIdAndUser(id, idusu);
 			ModelAndView mv = new ModelAndView("administracao/pedido/comanda/listarPedidos");
+			
+			Optional<Comanda> comandaop = comandaRepository.findById(id);
+			Comanda comanda = comandaop.get();
+			
+			mv.addObject("comanda", comanda);
+			
 
 			mv.addObject("pedidos", listaPedido);
 			mv.addObject("id", id);

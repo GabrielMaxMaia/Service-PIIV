@@ -14,11 +14,13 @@
 </head>
 
 <header th:fragment="headerBasico()"
-	style="font-weight: bold; font-family: Arial, Helvetica, sans-serif; color: #404C51;">
+	style="font-weight: bold; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 128, 255);">
 	<div class="container mt-3">
 	<div class="col text-right" >
 		<ul class="nav justify-content-end">
-			
+				<li class="nav-item"><a aria-current="page" class="nav-link"
+				th:classappend="${#httpServletRequest.getRequestURI().equals('/') ? 'active':''}"
+				href="/">Home</a></li>
 				<li class="nav-link ">Olá! [[${#httpServletRequest.remoteUser}]]
 					<form action="/logout" method="post"
 					class="navbar-form navbar-right">

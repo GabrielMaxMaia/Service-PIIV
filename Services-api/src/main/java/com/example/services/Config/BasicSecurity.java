@@ -12,7 +12,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class BasicSecurity extends WebSecurityConfigurerAdapter {
-
+	
+	private CustomAuthenticationSuccessHandler authenticationSuccessHandler;
+	
+	@Autowired
+    public BasicSecurity (CustomAuthenticationSuccessHandler authenticationSuccessHandler) {
+        this.authenticationSuccessHandler = authenticationSuccessHandler;
+    }
+	
 	@Autowired
 	private UserDetailsService userDetailsService;
 
@@ -44,15 +51,35 @@ public class BasicSecurity extends WebSecurityConfigurerAdapter {
 		/*
 		 * .and() .csrf().disable()
 		 */		
-		http.authorizeRequests().antMatchers("/").permitAll()
+		http.authorizeRequests().antMatchers("/").permitAll()//concede acesso a home para todos.
+		//restrição de acessos
+		.antMatchers("/usuarios").hasAnyRole("USUARIO")
+		.antMatchers("/categorias").hasAnyRole("USUARIO")
+		.antMatchers("/produtos").hasAnyRole("USUARIO")
+		.antMatchers("/comandas/criar").hasAnyRole("USUARIO")
+		.antMatchers("/dashAdm").hasAnyRole("USUARIO")
+		.antMatchers("/dashAdm/comandas").hasAnyRole("USUARIO")
+		.antMatchers("/garcons").hasAnyRole("USUARIO")
+		.antMatchers("/cozinha/listar/adm").hasAnyRole("USUARIO")
+		.antMatchers("/garcons").hasAnyRole("GARCOM")
+		.antMatchers("/cozinha").hasAnyRole("COZINHA")
 	        .anyRequest().authenticated()// Para qualquer requisição (anyRequest) é preciso estar autenticado (authenticated).
 	    .and()
-	    	.formLogin().loginPage("/entrar").permitAll()// Aqui passamos a página customizada. (permiteAll avisa o spring pra liberar o acesso pra ela)
+	    .exceptionHandling()
+        .accessDeniedPage("/acessoNegado")//pagina de acesso negado
+        .and()
+	    	.formLogin().loginPage("/entrar")// Aqui passamos a página customizada.
+	    	.successHandler(authenticationSuccessHandler)//redirecionamento dependendo do tipo de usuario.
+	    	.permitAll() //avisa o spring pra liberar o acesso a pagina customizada para todos.
 		.and()
 			.logout().logoutSuccessUrl("/entrar")//customização da url de logout, a url padrão causa bugs no login.
 		.and()
 			.httpBasic()
-			.and().csrf().disable();		
+			.and().csrf().disable();			
+		
 		
 	}
+	
+	
 }
+

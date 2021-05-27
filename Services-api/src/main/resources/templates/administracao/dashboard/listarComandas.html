@@ -10,28 +10,30 @@
 
 	
 	<div class="text-center">
-		<h4>Gerenciamento das Mesas</h4>	
+		<h4>Gerenciamento das Comandas</h4>
+	
 	</div>
 	
-	<div class="container">	
 	
+
+
+	<div class="container">	
+		
 	
 		<div class="row mx-lg-n5">
 			
 			<th:block th:each="mesa : ${mesas}">
 				<div class="col py-3 px-lg-5 border bg-light text-center" >						
 								
-						<a th:href="@{/dashAdm/mesa/{id}/relatorio(id = ${mesa.getId()})}">
-							<button type="submit" class="btn btn-primary" th:utext="${'Mesa '+mesa.numero}"></button></a>
+						<a th:href="@{/dashAdm/mesa/{id}/comandas(id = ${mesa.getId()})}">
+							<button type="submit" class="btn btn-success" th:utext="${'Mesa '+mesa.numero}"></button></a>
 				
 				</div>				
-			</th:block>			
+			</th:block>
+			
 		</div>
 	</div>
-	
-	
-	
-	
+
 
 </body>
 

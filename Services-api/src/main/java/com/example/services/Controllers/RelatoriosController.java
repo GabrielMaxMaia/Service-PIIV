@@ -14,14 +14,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.services.Model.Comanda;
 import com.example.services.Model.Mesa;
 import com.example.services.Model.Pedido;
 import com.example.services.Model.Produto;
 import com.example.services.Model.Usuario;
 import com.example.services.dto.ReqCaixa;
+import com.example.services.repositories.ComandaRepository;
 import com.example.services.repositories.MesaRepository;
 import com.example.services.repositories.PedidoRepository;
 import com.example.services.repositories.ProdutoRepository;
+import com.example.services.repositories.UsuarioRepository;
 
 @Controller
 @RequestMapping("/dashAdm")
@@ -36,6 +39,12 @@ public class RelatoriosController {
 	@Autowired
 	private ProdutoRepository produtoRepository;
 	
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+	
+	@Autowired
+	private ComandaRepository comandaRepository;
+	
 	@GetMapping
 	public String listarMesas(Model model) {
 		
@@ -46,7 +55,17 @@ public class RelatoriosController {
 		return "/administracao/dashboard/dashboard";
 	}
 	
-	@GetMapping("/mesa/{id}")
+	@GetMapping("/comandas")
+	public String listarComandas(Model model) {
+		
+		
+		// lista de mesa
+		List<Mesa> mesas = this.mesaRepository.findAll();
+		model.addAttribute("mesas", mesas);
+		return "/administracao/dashboard/listarComandas";
+	}
+	
+	@GetMapping("/mesa/{id}/relatorio")
 	public ModelAndView visualizarCaixa(@PathVariable Long id) {
 		if (!pedidoRepository.findPedidosByMesa(id).isEmpty()) {
 
@@ -85,5 +104,28 @@ public class RelatoriosController {
 
 		}
 
+	}
+	
+	@GetMapping("/mesa/{id}/comandas")
+	public ModelAndView listarPorMesa(@PathVariable Long id) {
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Optional<Usuario> usuarioop = usuarioRepository.findByEmail(auth.getName());
+		Usuario usuario = usuarioop.get();
+		Long idusu = usuario.getCodigo();
+
+		List<Comanda> comandas = comandaRepository.comandasPorMesa(id, idusu);
+
+		if (comandas.isEmpty()) {
+
+			return new ModelAndView("redirect:/dashAdm");
+		}
+
+		ModelAndView mv = new ModelAndView("administracao/mesa");
+
+		mv.addObject("comandas", comandas);
+		mv.addObject("id", id);
+
+		return mv;
 	}
 }

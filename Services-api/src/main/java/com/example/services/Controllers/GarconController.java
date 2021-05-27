@@ -97,6 +97,11 @@ public class GarconController {
 
 			List<Pedido> listaPedido = pedidoRepository.findPedidosByComandaIdAndUser(id, idusu);
 			ModelAndView mv = new ModelAndView("garcon/pedido/comanda/listarPedidos");
+			
+			Optional<Comanda> comandaop = comandaRepository.findById(id);
+			Comanda comanda = comandaop.get();
+			
+			mv.addObject("comanda", comanda);
 
 			mv.addObject("pedidos", listaPedido);
 			mv.addObject("id", id);
@@ -228,6 +233,11 @@ public class GarconController {
 
 			List<Pedido> listaPedido = pedidoRepository.findPedidosByComandaIdAndUser(id, idusu);
 			ModelAndView mv = new ModelAndView("garcon/pedido/comanda/listarPedidos");
+			
+			Optional<Comanda> comandaop = comandaRepository.findById(id);
+			Comanda comanda = comandaop.get();
+			
+			mv.addObject("comanda", comanda);
 
 			mv.addObject("pedidos", listaPedido);
 			mv.addObject("id", id);

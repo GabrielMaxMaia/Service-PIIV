@@ -32,15 +32,18 @@
 				th:classappend="${#httpServletRequest.getRequestURI().startsWith('/comandas') ? 'active':''}"
 				href="/comandas/criar">Criar Comandas</a></li>
 			<li class="nav-item"><a class="nav-link "
+			th:classappend="${#httpServletRequest.getRequestURI().startsWith('/dashAdm/comandas') ? 'active':''}"
+			    href="/dashAdm/comandas">Listar Comandas</a></li>
+			<li class="nav-item"><a class="nav-link "
 			th:classappend="${#httpServletRequest.getRequestURI().startsWith('/dashAdm') ? 'active':''}"
-			    href="/dashAdm">DashBoard</a></li>
+			    href="/dashAdm">DashBoard</a></li>			
 			    <li class="nav-item"><a class="nav-link "
 			th:classappend="${#httpServletRequest.getRequestURI().startsWith('/cozinha/listar/adm') ? 'active':''}"
 			    href="/cozinha/listar/adm">Cozinha</a></li>
 			<div class="col text-right">
 				<ul class="nav justify-content-end">
 
-					<li class="nav-link ">Olá!
+					<li class="nav-item ">Olá!
 						[[${#httpServletRequest.remoteUser}]]
 						<form action="/logout" method="post"
 							class="navbar-form navbar-right">
@@ -55,8 +58,12 @@
 					</li>
 				</ul>
 			</div>
+			
+			
 		</ul>
+		
 	</div>
+	
 
 	<div class="container mt-3">
 		<div class="row"></div>

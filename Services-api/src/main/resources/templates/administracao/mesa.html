@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragmentos :: head('Lista de comandas das mesas')}"></head>
+
+<body>
+	<header th:replace="~{fragmentos :: header('Lista de comandas')}"></header>
+
+	<div class="jumbotron text-center">
+		<h1>Comandas</h1>	
+	</div>
+	<div class="text-center">
+		<h4>Gerenciamento das Comandas da mesa <span th:text="${id}"></span></h4>	
+		
+	</div>
+	<div class="container">	
+		<div class="row mx-lg-n5">
+			<th:block th:each="comanda : ${comandas}">
+				<div class="col py-3 px-lg-5 border bg-light text-center" >
+					
+					<a th:href="@{/comandas/comanda/{id}(id = ${comanda.getId()})}">
+						<button type="submit" class="btn btn-secondary" th:utext="${'Comanda '+comanda.getId()}"></button></a>					
+				</div>
+			</th:block>			
+			
+		</div>
+		<div class="col text-center" >
+				<a class="btn btn-secondary btn-sm" href="javascript:history.back()">Voltar</a>
+			</div>
+	</div>
+
+
+</body>
+
+</html>
