@@ -62,7 +62,7 @@ public class BasicSecurity extends WebSecurityConfigurerAdapter {
 		.antMatchers("/garcons").hasAnyRole("USUARIO")
 		.antMatchers("/cozinha/listar/adm").hasAnyRole("USUARIO")
 		.antMatchers("/garcons").hasAnyRole("GARCOM")
-		.antMatchers("/cozinha").hasAnyRole("COZINHA")
+		.antMatchers("/cozinha/listar").hasAnyRole("COZINHA")
 	        .anyRequest().authenticated()// Para qualquer requisição (anyRequest) é preciso estar autenticado (authenticated).
 	    .and()
 	    .exceptionHandling()
