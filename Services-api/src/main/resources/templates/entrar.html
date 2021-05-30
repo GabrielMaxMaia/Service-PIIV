@@ -1,57 +1,74 @@
 <!DOCTYPE html>
-<html
-    xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
->
-	<head>
-	    <title>Spring Security</title>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
-		<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+    <title>Spring Security</title>
 
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-		
-		
-		
-		
-	</head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<body style="background-color: #f9f9f9">
-		<div class="row">
-			<div class="col-sm-4 col-sm-offset-4" style="margin-left: auto; margin-right: auto;">
-				<div th:if="${param.error}">
-					<div class="alert alert-danger">Usuário e/ou inválidos!</div>
-				</div>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-				<div th:if="${param.logout}">
-					<div class="alert alert-info">Até logo!</div>
-				</div>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/modifyRoot.css}">
 
-				<div class="panel panel-info">
-					<div class="panel-heading">
-				    	<h3 class="panel-title">ENTRE</h3>
-				  	</div>
-					<div class="panel-body">
-						<form action="/entrar" method="post">
-							<div class="form-group">
-								<input name="username" class="form-control" placeholder="Usuário"/>
-							</div>
 
-							<div class="form-group">
-								<input type="password" name="password" class="form-control" placeholder="Senha"/>
-							</div>
+</head>
 
-							<div class="form-group">
-								<button class="btn btn-primary btn-block">Entrar</button>
-							</div>
-							
-<!-- 							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> -->
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</body>
+<body style="background-color: #b0d0d3; height: 100vh;">
+    <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="col-6">
+                <div class="card shadow-lg mx-3 p-2 border-primary" style="border-radius: 30px;">
+                    <div class="card-body">
+
+                        <div th:if="${param.logout}">
+                            <div class="alert alert-info">Até logo!</div>
+                        </div>
+
+                        <!-- <img class="card-img-top" alt="Logo Service"
+							src="../static/img/logoService.png"> -->
+
+                        <div class="panel panel-info ">
+
+                            <div class="panel-heading text-center mt-3">
+                                <h3 class="panel-title ">BEM VINDO!</h3>
+                            </div>
+
+                            <div th:if="${param.error}">
+                                <div class="alert alert-danger">Usuário e/ou inválidos!</div>
+                            </div>
+
+                            <div class="panel-body">
+                                <form action="/entrar" method="post">
+
+                                    <div class="form-group">
+                                        <h6>E-mail</h6>
+                                        <input name="username" class="form-control shadow-sm" placeholder="Example@mail.com" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <h6>Senha</h6>
+                                        <input type="password" name="password" class="form-control shadow-sm" placeholder="Senha" />
+                                    </div>
+
+                                    <div class="form-group text-center">
+                                        <button class="btn btn-primary btn-large shadow-sm" style="width: 30%">Entrar</button>
+                                    </div>
+
+                                    <div class="form-group text-center">
+                                        <a class="btn-link shadow-sm" href="#">Esqueceu sua senha?</a>
+                                    </div>
+
+                                    <!-- 							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> -->
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
 </html>
