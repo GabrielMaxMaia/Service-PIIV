@@ -1,51 +1,59 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="~{fragmentos :: head('home ')}"></head>
 
-<body style="background: blue;">
-    <header style="font-weight: bold; font-family: Arial, Helvetica, sans-serif; color: #404C51;">
-        <div class="container mt-3">
-            <div class="col text-right">
-                <ul class="nav justify-content-end">
+<body style="background: #b0d0d3;">
+	<div class="container mt-3">
+		<header
+			style="font-weight: bold; font-family: Arial, Helvetica, sans-serif; color: #404C51;">
 
-                    <li class="nav-link " th:if="${#httpServletRequest.remoteUser} != null">Olá! [[${#httpServletRequest.remoteUser}]]
-                        <form action="/logout" method="post" class="navbar-form navbar-right">
+			<div class="col text-right">
+				<ul class="nav justify-content-end">
 
-                            <button type="submit" class="btn btn-primary btn-sm">
+					<li class="nav-link "
+						th:if="${#httpServletRequest.remoteUser} != null">Olá!
+						[[${#httpServletRequest.remoteUser}]]
+						<form action="/logout" method="post"
+							class="navbar-form navbar-right">
+
+							<button type="submit" class="btn btn-primary btn-sm">
 
 								<span class="glyphicon glyphicon-log-out"></span> Sair
 							</button>
-                            <!-- 					<input type="hidden" th:name="${_csrf.parameterName}" -->
-                            <!-- 						th:value="${_csrf.token}" /> -->
-                        </form>
-                        <br>
-                        <a class="btn btn-primary btn-sm" href="javascript:history.back()">Voltar</a>
+							<!-- 					<input type="hidden" th:name="${_csrf.parameterName}" -->
+							<!-- 						th:value="${_csrf.token}" /> -->
+						</form> <br> <a class="btn btn-primary btn-sm"
+						href="javascript:history.back()">Voltar</a>
 
-                    </li>
-                    <li class="nav-link " th:if="${#httpServletRequest.remoteUser} == null"><a href="/entrar" class="btn btn-primary btn-sm"> Efetuar Login</a></li>
+					</li>
+					<li class="nav-link "
+						th:if="${#httpServletRequest.remoteUser} == null"><a
+						href="/entrar" class="btn btn-primary btn-sm"> Efetuar Login</a></li>
 
-                </ul>
-            </div>
+				</ul>
+			</div>
 
-        </div>
-    </header>
+		</header>
+	</div>
+	<div class="embed-responsive embed-responsive-16by9"
+		style="width: 0 1552px;">
+		<iframe class="embed-responsive-item"
+			src="https://www.youtube.com/embed/1hBNnSgOgq8?rel=0" allowfullscreen></iframe>
+	</div>
 
-    <div class="embed-responsive embed-responsive-16by9" style="width: 0 1552px;">
-        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/1hBNnSgOgq8?rel=0" allowfullscreen></iframe>
-    </div>
+	<!-- 	<div> -->
+	<!-- 		<span th:text="${lanches.get(0).getCategoria().getNome()}"> </span> -->
+	<!-- 		<br> -->
 
-    <!-- 	<div> -->
-    <!-- 		<span th:text="${lanches.get(0).getCategoria().getNome()}"> </span> -->
-    <!-- 		<br> -->
+	<!-- 		<th:block th:each="lanche : ${lanches}"> -->
 
-    <!-- 		<th:block th:each="lanche : ${lanches}"> -->
+	<!-- 			<span th:text="${lanche.nome}"> </span> -->
+	<!-- 			<br> -->
 
-    <!-- 			<span th:text="${lanche.nome}"> </span> -->
-    <!-- 			<br> -->
-
-    <!-- 		</th:block> -->
-    <!-- 	</div> -->
+	<!-- 		</th:block> -->
+	<!-- 	</div> -->
 
 </body>
 
