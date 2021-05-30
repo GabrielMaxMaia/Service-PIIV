@@ -35,23 +35,10 @@ public class BasicSecurity extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-//		http.authorizeRequests()
-//			.anyRequest().authenticated()
-//			
-//			.and().formLogin().loginPage("/entrar").permitAll()
-//			.and()
-//				.logout().logoutSuccessUrl("/entrar?logout")
-//				
-//			.and()
-//				.httpBasic()
-//				
-//			.and()
-//				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//		.and()
+//		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) verificar
 
-		/*
-		 * .and() .csrf().disable()
-		 */		
-		http.authorizeRequests().antMatchers("/").permitAll()//concede acesso a home para todos.
+		http.authorizeRequests().antMatchers("/","/css/**", "/js/**", "/img/**").permitAll()//concede acesso a home para todos.
 		//restrição de acessos
 		.antMatchers("/usuarios").hasAnyRole("USUARIO")
 		.antMatchers("/categorias").hasAnyRole("USUARIO")
