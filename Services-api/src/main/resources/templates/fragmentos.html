@@ -49,28 +49,19 @@
 			<div class="col text-right">
 				<ul class="nav justify-content-end">
 
-					<li class="nav-item ">Olá!
+					<li class="nav-item ">Bem vindo!
 						[[${#httpServletRequest.remoteUser}]]
 						<form action="/logout" method="post"
 							class="navbar-form navbar-right">
 
-							<button type="submit" class="btn btn-primary btn-sm">
-
-								<span class="glyphicon glyphicon-log-out"></span> Sair
-							</button>
-<!-- 							<input type="hidden" th:name="${_csrf.parameterName}" -->
-<!-- 								th:value="${_csrf.token}" /> -->
+							<button type="submit" class="btn btn-primary btn-sm">Sair</button>
 						</form>
 					</li>
 				</ul>
 			</div>
-			
-			
 		</ul>
-		
 	</div>
 	
-
 	<div class="container mt-3">
 		<div class="row"></div>
 		<div class="col-12">
