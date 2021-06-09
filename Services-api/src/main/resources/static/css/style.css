@@ -5,10 +5,12 @@
     font-color: white;
     --primary: #2890ce;
     --secondary: #b0d0d3;
+    --light-blue: #729fcf;
+    --blue: #007bff;
+    --deep-blue: #0a58ca;
     --green: #9cec5b;
     --yellow: #f6ae2d;
     --red: #dc3545;
-    --blue: #007bff;
     --indigo: #6610f2;
     --purple: #6f42c1;
     --pink: #e83e8c;
@@ -133,18 +135,24 @@ body {
   background-color: var(--blue);
   box-shadow: none;
   box-shadow: 0 0.09rem 0 var(--cyan);
-  border-color: var(--primary);
-  border-width: 2px;
+  border-color: var(--light-blue);
+  border-width: 1px;
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: var(--secondary);
-  border-color: var(--secondary);
+  background-color: var(--deep-blue);
+  border-color: var(--deep-blue);
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.btn-check:checked + .btn-primary, .btn-check:active + .btn-primary, .btn-primary:active, .btn-primary.active, .show > .btn-primary.dropdown-toggle {
+  color: #fff;
+  background-color: var(--deep-blue);
+  border-color: var(--deep-blue);
 }
 
 .border-primary {
