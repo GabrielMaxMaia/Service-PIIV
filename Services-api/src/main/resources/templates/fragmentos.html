@@ -20,9 +20,9 @@
 <header th:fragment="header(titulo)">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
 		<div class=" container">
-			<a class="navbar-brand" th:classappend="${#httpServletRequest.getRequestURI().equals('/') ? 'active':''}"
+			<a class="navbar-brand align-content-center" th:classappend="${#httpServletRequest.getRequestURI().equals('/') ? 'active':''}"
 					href="/"> <img src="/img/logoService.png"
-				width="30" height="30" class="d-inline-block align-top borda-logo"
+				width="30" height="30" class=" align-top borda-logo font-weight-bold"
 				alt=""> Vila Paraíso
 			</a>
 			<ul class="navbar-nav">

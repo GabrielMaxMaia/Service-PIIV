@@ -21,7 +21,13 @@
 <header th:fragment="headerBasico()">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
 		<div class=" container">
-			<ul class="nav justify-content-end">
+			<a class="navbar-brand"
+				th:classappend="${#httpServletRequest.getRequestURI().equals('/') ? 'active':''}"
+				href="/"> <img src="/img/logoService.png" width="30" height="30"
+				class="d-inline-block align-top borda-logo font-weight-bold" alt="">
+				Vila Paraíso
+			</a>
+			<ul class="navbar-nav">
 				<li class="nav-item"><a aria-current="page" class="nav-link"
 					th:classappend="${#httpServletRequest.getRequestURI().equals('/') ? 'active':''}"
 					href="/">Home</a></li>
