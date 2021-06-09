@@ -48,7 +48,7 @@
 					th:classappend="${#httpServletRequest.getRequestURI().startsWith('/cozinha/listar/adm') ? 'active':''}"
 					href="/cozinha/listar/adm">Cozinha</a></li>
 
-				<li class="nav-link">Bem vindo!
+				<li class="nav-link ml-4">Bem vindo!
 					[[${#httpServletRequest.remoteUser}]]</li>
 				<li class="nav-link">
 					<form action="/logout" method="post"
