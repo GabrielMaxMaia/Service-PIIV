@@ -38,7 +38,7 @@ body {
     height: 100vh;
 }
 
-/* CLASSES PROPRIETÁRIAS */
+/* CLASSES PROPRIETÃ�RIAS */
 
 .contencao{
 	display:grid;
@@ -179,4 +179,16 @@ body {
   text-align: center;
   color: white;  
   text-shadow: 2px 2px var(--light-blue);
+}
+
+#min-height{
+	min-height: calc(100vh - 180px);
+}
+
+footer {
+  
+  position:fixed; 
+  bottom: 0;
+  width: 100%;  
+  
 }

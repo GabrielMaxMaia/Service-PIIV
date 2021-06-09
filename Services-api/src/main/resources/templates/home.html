@@ -20,10 +20,12 @@
 						[[${#httpServletRequest.remoteUser}]]</li>
 						
 					<li class="nav-link"><a class="btn btn-primary btn-sm"
+					th:if="${#httpServletRequest.remoteUser} != null"
 						href="javascript:history.back()">Voltar</a></li>
 						
 					<li class="nav-link">
 						<form action="/logout" method="post"
+						th:if="${#httpServletRequest.remoteUser} != null"
 							class="navbar-form navbar-right">
 							<button type="submit" class="btn btn-primary btn-sm">Sair</button>
 						</form>
@@ -36,7 +38,7 @@
 			</div>
 		</nav>
 	</header>
-	<div class="container">
+	<div id="min-height" class="container">
 		<div class="contencao">
 			<div class="coluna">
 				<div class="embed-responsive embed-responsive-16by9">
@@ -58,6 +60,112 @@
 			</div>
 		</div>
 	</div>
+	
+	<div class="album py-5 ">
+        <div class="container">		  
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card mb-4 shadow-sm">
+                <img class="card-img-top" data-src="/img/hamburguer.png" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/img/hamburguer.png" data-holder-rendered="true">
+                <div class="card-body">
+                  <p class="card-text">Hamburguer</p>
+                  <p class="card-text">R$ 21,90</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                     
+                    </div>
+                    <small class="text-muted">10/06/2021</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-md-4">
+              <div class="card mb-4 shadow-sm">
+              	<img class="card-img-top" data-src="/img/refri.jpg" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/img/refri.jpg" data-holder-rendered="true">
+                 <div class="card-body">
+                  <p class="card-text">Refrigerante</p>
+                  <p class="card-text">R$ 7,99</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                     
+                    </div>
+                    <small class="text-muted">10/06/2021</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-md-4">
+              <div class="card mb-4 shadow-sm">
+              	<img class="card-img-top" data-src="/img/batata.jpg" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/img/batata.jpg" data-holder-rendered="true">
+                 <div class="card-body">
+                  <p class="card-text">Porção de Fritas</p>
+                  <p class="card-text">R$ 10,00</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                                 
+                    </div>
+                    <small class="text-muted">10/06/2021</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mb-4 shadow-sm">
+              	<img class="card-img-top" data-src="/img/sucos.jpg" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/img/sucos.jpg" data-holder-rendered="true">
+                 <div class="card-body">
+                  <p class="card-text">Sucos</p>
+                  <p class="card-text">4,00</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>                      
+                    </div>
+                    <small class="text-muted">10/06/2021</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-md-4">
+              <div class="card mb-4 shadow-sm">
+              	<img class="card-img-top" data-src="/img/esfirra.jpg" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/img/esfirra.jpg" data-holder-rendered="true">
+                 <div class="card-body">
+                  <p class="card-text">Esfirras</p>
+                  <p class="card-text">R$ 0,99</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>                      
+                    </div>
+                    <small class="text-muted">10/06/2021</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-md-4">
+              <div class="card mb-4 shadow-sm">
+              	<img class="card-img-top" data-src="/img/refeicao.jpg" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/img/refeicao.jpg" data-holder-rendered="true">
+                 <div class="card-body">
+                  <p class="card-text">Refeição</p>
+                  <p class="card-text">R$ 22,00</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>                      
+                    </div>
+                    <small class="text-muted">10/06/2021</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+                 
+           
+            </div>
+          </div>
+        </div>
+      
+	
+	<footer th:replace="~{fragmentos :: footer()}"></footer>
 </body>
 
 </html>

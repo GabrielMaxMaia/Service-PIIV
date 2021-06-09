@@ -13,7 +13,7 @@
 		<h4>Gerenciamento das Comandas da mesa <span th:text="${id}"></span></h4>	
 		
 	</div>
-	<div class="container">	
+	<div id="min-height" class="container">	
 		<div class="row mx-lg-n5">
 			<th:block th:each="comanda : ${comandas}">
 				<div class="col py-3 px-lg-5 border bg-light text-center" >
@@ -29,7 +29,7 @@
 			</div>
 	</div>
 
-
+<footer th:replace="~{fragmentos :: footer()}"></footer>
 </body>
 
 </html>

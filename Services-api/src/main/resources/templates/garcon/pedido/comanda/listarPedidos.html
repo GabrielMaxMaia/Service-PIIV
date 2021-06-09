@@ -6,7 +6,7 @@
 
 <body>
 	<header th:replace="~{HeaderBasico :: headerBasico()}"></header>
-	<div class="container">
+	<div id="min-height" class="container">
 
 		<div>
 			Mesa: <span th:text="${comanda.getMesa.getId}"></span>
@@ -55,7 +55,7 @@
 		</div>
 	</div>
 
-
+<footer th:replace="~{fragmentos :: footer()}"></footer>
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->

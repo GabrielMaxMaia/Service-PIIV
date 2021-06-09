@@ -7,7 +7,7 @@
 <body>
 	<header th:replace="~{HeaderBasico :: headerBasico()}"></header>
 
-	<div class="jumbotron text-center">
+	<div id="min-height" class="jumbotron text-center">
 		<div class="text-center">
 			<form th:object="${comanda}" action="/garcons/comanda" method="POST">
 				<div class="mb-3">
@@ -30,7 +30,7 @@
 		<a class="btn btn-secondary btn-sm" href="javascript:history.back()">Voltar</a>
 	</div>
 
-
+<footer th:replace="~{fragmentos :: footer()}"></footer>
 
 </body>
 

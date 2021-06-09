@@ -6,7 +6,7 @@
 <body>
 	<header th:replace="~{HeaderBasico :: headerBasico()}"></header>
 	
-	<div class="container">
+	<div id="min-height" class="container">
 		<form method="POST" th:object="${reqNovoPedido}" th:action="@{/garcons/pedidos/comanda/{id}(id = ${id})}">
 			<div class="form-row">
 
@@ -38,5 +38,6 @@
 			</div>
 		</form>
 	</div>
+	<footer th:replace="~{fragmentos :: footer()}"></footer>
 </body>
 </html>

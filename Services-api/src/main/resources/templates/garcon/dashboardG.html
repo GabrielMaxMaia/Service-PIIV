@@ -13,7 +13,7 @@
 	<div class="text-center">
 		<h4>Gerenciamento das Mesas</h4>		
 	</div>
-	<div class="container">	
+	<div id="min-height" class="container">	
 		<div class="row mx-lg-n5">
 			<th:block th:each="mesa : ${mesas}">
 				<div class="col py-3 px-lg-5 border bg-light text-center" >					
@@ -25,7 +25,7 @@
 		</div>
 	</div>
 
-
+<footer th:replace="~{fragmentos :: footer()}"></footer>
 </body>
 
 </html>

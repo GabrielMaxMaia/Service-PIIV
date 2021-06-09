@@ -7,7 +7,8 @@
 	<header th:replace="~{fragmentos :: header('Editar Usuário #' + ${usuarioId})}"></header>
 	
 	<div th:replace="~{administracao/usuarios/fragmentosUsuario :: form(requisicaoNovoUsuario, '/usuarios/' + ${usuarioId})}">Formulário</div>
-
+	
+	<footer th:replace="~{fragmentos :: footer()}"></footer>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
