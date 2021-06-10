@@ -118,7 +118,7 @@ public class RelatoriosController {
 
 		if (comandas.isEmpty()) {
 
-			return new ModelAndView("redirect:/dashAdm");
+			return new ModelAndView("redirect:/dashAdm/comandas");
 		}
 
 		ModelAndView mv = new ModelAndView("administracao/mesa");
