@@ -6,7 +6,7 @@
 <body>
 	<header th:replace="~{HeaderBasico :: headerBasico()}"></header>
 	
-	<div id="min-height3" class="container">
+	<div class="container container-min-height">
 		<form method="POST" th:object="${reqNovoPedido}" th:action="@{/garcons/pedidos/comanda/{id}(id = ${id})}">
 			<div class="form-row">
 
