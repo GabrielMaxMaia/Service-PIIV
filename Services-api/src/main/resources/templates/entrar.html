@@ -28,8 +28,12 @@
 			<div class="col-6">
 
 				<div class="text-center">
-					<img class="rounded-circle position-relative logo-entrar"
+					<a
+						th:classappend="${#httpServletRequest.getRequestURI().equals('/') ? 'active':''}"
+						href="/"> <img
+						class="rounded-circle position-relative logo-entrar"
 						alt="Logo Service" src="/img/logoService.png">
+					</a>
 				</div>
 
 				<div class="card mx-3 p-2 cartao-entrar">

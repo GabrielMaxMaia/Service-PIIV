@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{fragmentos :: head('Service - Dashboard')}"><meta charset="UTF-8"></head>
+<head th:replace="~{fragmentos :: head('Service - Dashboard')}">
+<meta charset="UTF-8">
+</head>
 
 
 
@@ -14,116 +17,111 @@
 			<h1>Gerenciamento das Mesas</h1>
 		</div>
 	</div>
-	
-		
-	<div class="container">	
-	
-	
+
+
+	<div class="container">
 		<div class="row mx-lg-n5">
-			
 			<th:block th:each="mesa : ${mesas}">
-				<div class="col py-3 px-lg-5 border bg-light text-center" >						
-								
-						<a th:href="@{/dashAdm/mesa/{id}/relatorio(id = ${mesa.getId()})}">
-							<button type="submit" class="btn btn-primary" th:utext="${'Mesa '+mesa.numero}"></button></a>
-				
-				</div>				
-			</th:block>			
+				<div class="col py-3 px-lg-5 border bg-light text-center">
+					<a th:href="@{/dashAdm/mesa/{id}/relatorio(id = ${mesa.getId()})}">
+						<button type="submit" class="btn btn-primary"
+							th:utext="${'Mesa '+mesa.numero}"></button>
+					</a>
+				</div>
+			</th:block>
 		</div>
 	</div>
-	
-	
+
 	<div class="album py-5 bg-light">
-        <div class="container">		  
-          <div class="row">
-            <div class="col-md-4">
-              <div class="card mb-4 shadow-sm">
-                <img class="card-img-top" data-src="/img/valor1.png" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/img/valor1.png" data-holder-rendered="true">
-                <div class="card-body">
-                  <p class="card-text"></p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                                        
-                    </div>
-                    <small class="text-muted">10/06/2021</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-md-4">
-              <div class="card mb-4 shadow-sm">
-              	<img class="card-img-top" data-src="/img/valor2.png" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/img/valor2.png" data-holder-rendered="true">
-                 <div class="card-body">
-                  <p class="card-text"></p>
-                  <p class="card-text"></p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                                
-                    </div>
-                    <small class="text-muted">10/06/2021</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-md-4">
-              <div class="card mb-4 shadow-sm">
-              	<img class="card-img-top" data-src="/img/valor3.png" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/img/valor3.png" data-holder-rendered="true">
-                 <div class="card-body">
-                  <p class="card-text"></p>
-                  <p class="card-text"></p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                                
-                    </div>
-                    <small class="text-muted">10/06/2021</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-md-4">
-              <div class="card mb-4 shadow-sm">
-              	<img class="card-img-top" data-src="/img/valor4.png" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/img/valor4.png" data-holder-rendered="true">
-                 <div class="card-body">
-                  <p class="card-text"></p>
-                  <p class="card-text"></p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                                
-                    </div>
-                    <small class="text-muted">10/06/2021</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-md-4">
-              <div class="card mb-4 shadow-sm">
-              	<img class="card-img-top" data-src="/img/recDes.png" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/img/recDes.png" data-holder-rendered="true">
-                 <div class="card-body">
-                  <p class="card-text"></p>
-                  <p class="card-text"></p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                                
-                    </div>
-                    <small class="text-muted">10/06/2021</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            
-            
-                 
-           
-            </div>
-          </div>
-        </div>
-	
-	
+		<div class="container container-min-height">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="card mb-4 shadow-sm">
+						<img class="card-img-top" data-src="/img/valor1.png"
+							alt="Thumbnail [100%x225]"
+							style="height: 225px; width: 100%; display: block;"
+							src="/img/valor1.png" data-holder-rendered="true">
+						<div class="card-body">
+							<p class="card-text"></p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group"></div>
+								<small class="text-muted">10/06/2021</small>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="card mb-4 shadow-sm">
+						<img class="card-img-top" data-src="/img/valor2.png"
+							alt="Thumbnail [100%x225]"
+							style="height: 225px; width: 100%; display: block;"
+							src="/img/valor2.png" data-holder-rendered="true">
+						<div class="card-body">
+							<p class="card-text"></p>
+							<p class="card-text"></p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group"></div>
+								<small class="text-muted">10/06/2021</small>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="card mb-4 shadow-sm">
+						<img class="card-img-top" data-src="/img/valor3.png"
+							alt="Thumbnail [100%x225]"
+							style="height: 225px; width: 100%; display: block;"
+							src="/img/valor3.png" data-holder-rendered="true">
+						<div class="card-body">
+							<p class="card-text"></p>
+							<p class="card-text"></p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group"></div>
+								<small class="text-muted">10/06/2021</small>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="card mb-4 shadow-sm">
+						<img class="card-img-top" data-src="/img/valor4.png"
+							alt="Thumbnail [100%x225]"
+							style="height: 225px; width: 100%; display: block;"
+							src="/img/valor4.png" data-holder-rendered="true">
+						<div class="card-body">
+							<p class="card-text"></p>
+							<p class="card-text"></p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group"></div>
+								<small class="text-muted">10/06/2021</small>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="card mb-4 shadow-sm">
+						<img class="card-img-top" data-src="/img/recDes.png"
+							alt="Thumbnail [100%x225]"
+							style="height: 225px; width: 100%; display: block;"
+							src="/img/recDes.png" data-holder-rendered="true">
+						<div class="card-body">
+							<p class="card-text"></p>
+							<p class="card-text"></p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group"></div>
+								<small class="text-muted">10/06/2021</small>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<footer th:replace="~{fragmentos :: footer()}"></footer>
 
 </body>

@@ -18,7 +18,7 @@
 <title th:text="${titulo}">titulo de todas as paginas do ADM</title>
 </head>
 <header th:fragment="header(titulo)">
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 		<div class=" container">
 			<a class="navbar-brand align-content-center" th:classappend="${#httpServletRequest.getRequestURI().equals('/') ? 'active':''}"
 					href="/"> <img src="/img/logoService.png"
@@ -48,7 +48,7 @@
 					th:classappend="${#httpServletRequest.getRequestURI().startsWith('/cozinha/listar/adm') ? 'active':''}"
 					href="/cozinha/listar/adm">Cozinha</a></li>
 
-				<li class="nav-link ml-4">Bem vindo!
+				<li class="nav-link">Bem vindo!
 					[[${#httpServletRequest.remoteUser}]]</li>
 				<li class="nav-link">
 					<form action="/logout" method="post"
@@ -68,32 +68,19 @@
 	</div>
 </header>
 
-<footer class="bg-light text-center text-lg-start" th:fragment="footer()">   
-    
-    
-    <!-- Copyright -->
-  <div class="text-center p-3" style="background-color: rgba(197, 239, 247, 1);">
-    © 2021 Copyright:
-    <a class="text-dark" href="/">Service</a>
-    
+<footer class="text-center text-lg-start" th:fragment="footer()">   
+    <a class="text-white" href="/">© 2021 Copyright - Service</a>
     <ul class="navbar-nav">
-    	<li class="navbar-link">Desenvolvedores:</li>
         <li class="navbar-link">
-        <a class="link-light" href="https://github.com/GabrielMaxMaia">Gabriel Max</a> |
-        <a class="link-light" href="https://github.com/leonardo-900">Leonardo Alves</a> |
-        <a class="link-light" href="https://github.com/MatheusSantosDev">Matheus Santos</a> |
-        <a class="link-light" href="https://github.com/GustavoHBraga">Gustavo Braga</a>
+        	<a class="link-light" href="https://github.com/GabrielMaxMaia">Gabriel Max</a><span> |</span>
+        	<a class="link-light" href="https://github.com/GustavoHBraga">Gustavo Braga</a><span> |</span>
+        	<a class="link-light" href="https://github.com/leonardo-900">Leonardo Alves</a><span> |</span>
+        	<a class="link-light" href="https://github.com/MatheusSantosDev">Matheus Santos</a>        	
         </li>
         <li class="navbar-link"></li>
-  		<li>Código Fonte: <a class="navbar-link" href="https://github.com/GabrielMaxMaia/Service-PIIV"><img src="/img/logoService.png" width="30" height="30" class=" align-top borda-logo font-weight-bold" alt=""></a><a href="https://github.com/GabrielMaxMaia/Service-PIIV">Service</a></li>
-                
-        <li>
+  		<li><a class="navbar-link" href="https://github.com/GabrielMaxMaia/Service-PIIV">
+  			<img src="/img/logoService.png" width="15" height="15" class=" align-center" alt="">
+  			<a href="https://github.com/GabrielMaxMaia/Service-PIIV">Service - Gerenciamento de Restaurantes</a>
+  		</li>
     </ul>
-  </div>
-  <!-- Copyright -->
-    
-
-
 </footer>
-
-
