@@ -16,12 +16,12 @@
 		<div class="col-12">
 			<h1>Gerenciamento das Comandas da mesa <span th:text="${id}"></span></h1>
 		</div>
-	</div>
 	
-	<div class="container">	
-		<div class="row mx-lg-n5">
+	
+	<div class="container section-container">	
+		<div class="section-coluna">
 			<th:block th:each="comanda : ${comandas}">
-				<div class="col py-3 px-lg-5 border bg-light text-center" >
+				<div class="col text-center" >
 					
 					<a th:href="@{/comandas/comanda/{id}(id = ${comanda.getId()})}">
 						<button type="submit" class="btn btn-primary" th:utext="${'Comanda '+comanda.getId()}"></button></a>					
@@ -35,6 +35,7 @@
 			</div>
 	</div>
 
+	</div>
 <footer th:replace="~{fragmentos :: footer()}"></footer>
 </body>
 

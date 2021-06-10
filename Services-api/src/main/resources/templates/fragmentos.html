@@ -28,7 +28,7 @@
 			<ul class="navbar-nav">
 				<li class="nav-link"><a class="btn btn-primary btn-sm"
 					th:classappend="${#httpServletRequest.getRequestURI().startsWith('/dashAdm') ? 'active':''}"
-					href="/dashAdm">DashBoard</a></li>
+					href="/dashAdm">Dashboard</a></li>
 				<li class="nav-link"><a class="btn btn-primary btn-sm"
 					th:classappend="${#httpServletRequest.getRequestURI().startsWith('/usuarios') ? 'active':''}"
 					href="/usuarios">Usuários</a></li>
@@ -69,7 +69,7 @@
 </header>
 
 <footer class="text-center text-lg-start" th:fragment="footer()">   
-    <a class="text-white" href="/">© 2021 Copyright - Service</a>
+    <a class="text-white" href="/">© 2021 Copyright - Service Gerenciamento de Restaurantes</a>
     <ul class="navbar-nav">
         <li class="navbar-link">
         	<a class="link-light" href="https://github.com/GabrielMaxMaia">Gabriel Max</a><span> |</span>
