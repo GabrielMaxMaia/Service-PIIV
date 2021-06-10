@@ -207,6 +207,10 @@ footer {
     max-width: 1320px;
   }
   
+  .container-min-height {
+  	min-height: 750px;
+  }
+  
   .coluna{
 	height: 80vh;
 	width: 100%;
