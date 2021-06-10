@@ -39,13 +39,4 @@ public class CategoriaController {
 		return "redirect:/categorias";
 	}
 	
-//	@GetMapping("/{id}")
-//	public ModelAndView editar(@PathVariable Long id) {
-//		Categoria selecionado = categoriaRepository.findById(id).orElse(null);
-//		ModelAndView modelView = new ModelAndView("categoria/listarCategorias");
-//		modelView.addObject("categorias", selecionado);
-//		return modelView;
-//	}
-	
-	
 }

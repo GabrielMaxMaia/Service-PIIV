@@ -47,8 +47,6 @@
 					  <td th:text="${produto.getDescricao()}">Descricao</td>
 					  <td th:text="${produto.getValor()}">Valor</td>	
 					  <td>
-					  	<button type="submit" class="btn btn-primary">Editar</button>
-					  	
 					  	<a th:href="@{/produtos/delete/{id} (id = ${produto.id})}">
 					  	 	<button type="submit" class="btn btn-danger">Excluir</button>
 					  	</a>
