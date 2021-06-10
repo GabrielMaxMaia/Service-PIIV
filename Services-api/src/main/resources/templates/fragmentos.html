@@ -30,6 +30,12 @@
 					th:classappend="${#httpServletRequest.getRequestURI().startsWith('/dashAdm') ? 'active':''}"
 					href="/dashAdm">Dashboard</a></li>
 				<li class="nav-link"><a class="btn btn-primary btn-sm"
+					th:classappend="${#httpServletRequest.getRequestURI().startsWith('/dashAdm/comandas') ? 'active':''}"
+					href="/dashAdm/comandas">Listar Comandas</a></li>
+				<li class="nav-link"><a class="btn btn-primary btn-sm"
+					th:classappend="${#httpServletRequest.getRequestURI().startsWith('/comandas') ? 'active':''}"
+					href="/comandas/criar">Criar Comandas</a></li>
+				<li class="nav-link"><a class="btn btn-primary btn-sm"
 					th:classappend="${#httpServletRequest.getRequestURI().startsWith('/usuarios') ? 'active':''}"
 					href="/usuarios">Usuários</a></li>
 				<li class="nav-link"><a class="btn btn-primary btn-sm"
@@ -38,12 +44,6 @@
 				<li class="nav-link"><a class="btn btn-primary btn-sm"
 					th:classappend="${#httpServletRequest.getRequestURI().startsWith('/produtos') ? 'active':''}"
 					href="/produtos">Produtos</a></li>
-				<li class="nav-link"><a class="btn btn-primary btn-sm"
-					th:classappend="${#httpServletRequest.getRequestURI().startsWith('/comandas') ? 'active':''}"
-					href="/comandas/criar">Criar Comandas</a></li>
-				<li class="nav-link"><a class="btn btn-primary btn-sm"
-					th:classappend="${#httpServletRequest.getRequestURI().startsWith('/dashAdm/comandas') ? 'active':''}"
-					href="/dashAdm/comandas">Listar Comandas</a></li>
 				<li class="nav-link"><a class="btn btn-primary btn-sm"
 					th:classappend="${#httpServletRequest.getRequestURI().startsWith('/cozinha/listar/adm') ? 'active':''}"
 					href="/cozinha/listar/adm">Cozinha</a></li>
@@ -69,18 +69,21 @@
 </header>
 
 <footer class="text-center text-lg-start" th:fragment="footer()">   
-    <a class="text-white" href="/">© 2021 Copyright - Service Gerenciamento de Restaurantes</a>
     <ul class="navbar-nav">
+    	<li class="navbar-link">
+    		<a href="https://github.com/GabrielMaxMaia/Service-PIIV">
+  			<img src="/img/logoService.png" width="15" height="15" class=" align-center" alt="">
+  			<a href="https://github.com/GabrielMaxMaia/Service-PIIV">Service - Gerenciamento de Restaurantes</a>
+  		</li>
+    	<li class="navbar-link">
+    		<a class="text-light" href="/">© 2021 Copyright - Service Gerenciamento de Restaurantes</a>
+    	</li>
         <li class="navbar-link">
         	<a class="link-light" href="https://github.com/GabrielMaxMaia">Gabriel Max</a><span> |</span>
         	<a class="link-light" href="https://github.com/GustavoHBraga">Gustavo Braga</a><span> |</span>
         	<a class="link-light" href="https://github.com/leonardo-900">Leonardo Alves</a><span> |</span>
         	<a class="link-light" href="https://github.com/MatheusSantosDev">Matheus Santos</a>        	
         </li>
-        <li class="navbar-link"></li>
-  		<li><a class="navbar-link" href="https://github.com/GabrielMaxMaia/Service-PIIV">
-  			<img src="/img/logoService.png" width="15" height="15" class=" align-center" alt="">
-  			<a href="https://github.com/GabrielMaxMaia/Service-PIIV">Service - Gerenciamento de Restaurantes</a>
-  		</li>
+  		
     </ul>
 </footer>

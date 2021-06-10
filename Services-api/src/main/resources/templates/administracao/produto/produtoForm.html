@@ -22,7 +22,7 @@
 	
 	<body>
 		<header th:replace="~{fragmentos :: header('Cadastro de Produtos')}"></header>
-		<div class="container">
+		<div class="container container-min-height">
 			<form  method="POST" th:object="${produto}" th:action="@{/produtos}">
 				<div class="form-row">
 		

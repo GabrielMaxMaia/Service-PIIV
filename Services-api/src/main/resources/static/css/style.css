@@ -56,6 +56,10 @@ footer {
 	height: 80vh;
 }
 
+.container-min-height {
+  	min-height: calc(100% - 10rem);
+ }
+
 .coluna{
 	place-self:center;
 	width: 100%;
@@ -78,7 +82,6 @@ footer {
 	box-shadow: 0 4px 0 lightgray;
 	background-color: white;
 }
-
 
 .cartao-entrar{
 	border-radius: 2rem;
@@ -112,62 +115,6 @@ footer {
   padding-left: var(--bs-gutter-x, 0.75rem);
   margin-right: auto;
   margin-left: auto;
-}
-
-@media (min-width: 576px) {
-  .container-sm, .container {
-    max-width: 540px;
-  }
-}
-@media (min-width: 768px) {
-  .container-md, .container-sm, .container {
-    max-width: 720px;
-  }
-}
-@media (min-width: 992px) {
-  .container-lg, .container-md, .container-sm, .container {
-    max-width: 960px;
-  }
-}
-@media (min-width: 1200px) {
-  .container-xl, .container-lg, .container-md, .container-sm, .container {
-    max-width: 1280px;
-  }
-  
-  .contencao{
-	display:grid;
-	grid-template-columns:1fr;
-	height: 100%;
-}
-  .coluna{
-	height: unset;
-	width: 65%;
-}
-  
-}
-@media (min-width: 1400px) {
-  .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
-    max-width: 1320px;
-  }
-  
-  .container-min-height {
-  	min-height: 700px;
-  }
-  
-  .coluna{
-	height: 80vh;
-	width: 100%;
-  }
-  
-  .cartao-entrar{
-	padding: 2rem 0 0 !important;
-  }
-
-  .logo-entrar{
-	width: 11rem;
-	z-index:1;
-	margin-bottom:-2.5rem;
-  }
 }
 
 .btn-primary {
@@ -219,4 +166,70 @@ footer {
   text-align: center;
   color: white;  
   text-shadow: 2px 2px var(--light-blue);
+}
+
+/* @MEDIA'S REPONSIVO*/
+
+@media (min-height: 640px) {
+  footer {
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+@media (min-width: 576px) {
+  .container-sm, .container {
+    max-width: 540px;
+  }
+}
+@media (min-width: 768px) {
+  .container-md, .container-sm, .container {
+    max-width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .container-lg, .container-md, .container-sm, .container {
+    max-width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .container-xl, .container-lg, .container-md, .container-sm, .container {
+    max-width: 1280px;
+  }
+  
+  .contencao{
+	display:grid;
+	grid-template-columns:1fr;
+	height: 100%;
+  }
+  
+  .coluna{
+	height: unset;
+	width: 65%;
+  }
+  
+}
+@media (min-width: 1400px) {
+  .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
+    max-width: 1320px;
+  }
+  
+  .container-min-height {
+  	min-height: 700px;
+  }
+  
+  .coluna{
+	height: 80vh;
+	width: 100%;
+  }
+  
+  .cartao-entrar{
+	padding: 2rem 0 0 !important;
+  }
+
+  .logo-entrar{
+	width: 11rem;
+	z-index:1;
+	margin-bottom:-2.5rem;
+  }
 }

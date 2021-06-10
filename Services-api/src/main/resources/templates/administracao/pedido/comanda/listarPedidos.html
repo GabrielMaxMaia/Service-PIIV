@@ -2,21 +2,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{fragmentos :: head('Service - Lista de Pedidos Administrador')}"></head>
+<head
+	th:replace="~{fragmentos :: head('Service - Lista de Pedidos Administrador')}"></head>
 
 <body>
 	<header th:replace="~{fragmentos :: header('Lista de Pedidos')}"></header>
-	<div class="container">
-		
-		<div class="container mt-3">
+	<div class="container container-min-height">
 		<div class="row"></div>
 		<div class="col-12">
-			<h1>Mesa: <span th:text="${comanda.getMesa.getId}"></span></h1>
+			<h1>
+				Mesa: <span th:text="${comanda.getMesa.getId}"></span>
+			</h1>
 		</div>
 		<div class="col-12">
-			<h1>Comanda: <span th:text="${comanda.getId}"></span></h1>
+			<h1>
+				Comanda: <span th:text="${comanda.getId}"></span>
+			</h1>
 		</div>
-	</div>
+
 		<div class="row">
 
 			<table class="table" style="margin-top: .85em; text-align: center;">
@@ -34,10 +37,13 @@
 				<tbody>
 					<tr th:each="pedido : ${pedidos}">
 						<td class="table-warning" th:text="${pedido.status}">status</td>
-						<td class="table-warning" th:text="${pedido.getHoraDoPedido().toLocalTime()}">hora do pedido</td>
+						<td class="table-warning"
+							th:text="${pedido.getHoraDoPedido().toLocalTime()}">hora do
+							pedido</td>
 						<td class="table-warning" th:text="${pedido.observacao}">observacao</td>
 						<td class="table-warning" th:text="${pedido.quantidade}">quantidade</td>
-						<td class="table-warning" th:text="${pedido.produto.nome}">produto id</td>
+						<td class="table-warning" th:text="${pedido.produto.nome}">produto
+							id</td>
 					</tr>
 				</tbody>
 			</table>
@@ -57,8 +63,7 @@
 			<a class="btn btn-primary btn-sm" href="/dashAdm">Voltar</a>
 		</div>
 	</div>
-
-<footer th:replace="~{fragmentos :: footer()}"></footer>
+	<footer th:replace="~{fragmentos :: footer()}"></footer>
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
