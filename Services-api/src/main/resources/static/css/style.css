@@ -181,8 +181,22 @@ body {
   text-shadow: 2px 2px var(--light-blue);
 }
 
+/* margens minimas para que o footer nao sobreponha */
 #min-height{
-	min-height: calc(100vh - 180px);
+	min-height: calc(110vh - 50px);
+	font-family: cursive;
+}
+
+#min-height2{
+	min-height: calc(80vh - 10px);
+}
+
+#min-height3{
+	min-height: calc(70vh - 30px);
+}
+
+#min-height4{
+	min-height: calc(250vh - 10px);
 }
 
 footer {

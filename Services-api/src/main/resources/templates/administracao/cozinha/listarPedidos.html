@@ -6,30 +6,30 @@
 
 <body>
 	<header th:replace="~{fragmentos :: header('Lista de Pedidos')}"></header>
-	<div class="container">
+	<div id="min-height4" class="container">
 		<div class="col-12">
 			<table class="table" style="margin-top: .85em; text-align: center;">
 				<thead style="background-color: #F5F5F5;">
 					<tr>
 
-						<th scope="col-2">Codigo do pedido</th>
-						<th scope="col-2">Prato</th>
-						<th scope="col-2">quantidade</th>
-						<th scope="col-2">Observação</th>
-						<th scope="col-2">Status</th>
-
+						<th class="table-success" scope="col-2">Codigo do pedido</th>
+						<th class="table-success" scope="col-2">Prato</th>
+						<th class="table-success" scope="col-2">quantidade</th>
+						<th class="table-success" scope="col-2">Observação</th>
+						<th class="table-success" scope="col-2">Status</th>
+						<th class="table-success" scope="col-2"></th>
 					</tr>
 				</thead>
 
 				<tbody>
 					<tr th:each="l : ${listar} ">
 					
-						<th scope="row" th:text="${l.getId()}">id</th>
-						<td th:text="${l.nome}">Nome do Produto</td>
-						<td th:text="${l.quantidade}">Quantidade</td>
-						<td th:text="${l.observacao}">Observação</td>
-						<td th:text="${l.status}">Status</td> 
-						<td>
+						<th class="table-info" scope="row" th:text="${l.getId()}">id</th>
+						<td class="table-info" th:text="${l.nome}">Nome do Produto</td>
+						<td class="table-info" th:text="${l.quantidade}">Quantidade</td>
+						<td class="table-info" th:text="${l.observacao}">Observação</td>
+						<td class="table-info" th:text="${l.status}">Status</td> 
+						<td class="table-info">
 							<a th:href="@{/cozinha/atualizar/{id}/adm(id = ${l.getId()})}">
 							<button type="submit" class="btn btn-primary">Pronto</button></a>
 						</td>

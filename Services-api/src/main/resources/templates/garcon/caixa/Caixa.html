@@ -7,7 +7,7 @@
 <body>
 	<header th:replace="~{HeaderBasico :: headerBasico()}"></header>
 
-	<div id="min-height" class="container">
+	<div id="min-height3" class="container">
 		<div class="col-12">
 			<table class="table" style="margin-top: .85em; text-align: center;">
 				<thead style="background-color: #F5F5F5;">
@@ -41,12 +41,12 @@
 			
 			<form th:action="@{/garcons/comanda/{id}/finalizar(id = ${id})}" method="POST">
 				<div class="col-12 text-right">				
-				<button type="submit" class="btn btn-secondary">Pagar</button>
+				<button type="submit" class="btn btn-primary">Pagar</button>
 			</div>
 			</form>
 			
 			<div class="col text-center" >
-				<a class="btn btn-secondary btn-sm" href="javascript:history.back()">Voltar</a>
+				<a class="btn btn-primary btn-sm" href="javascript:history.back()">Voltar</a>
 			</div>
 
 		</div>

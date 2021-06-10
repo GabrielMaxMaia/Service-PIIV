@@ -6,52 +6,56 @@
 
 <body>
 	<header th:replace="~{HeaderBasico :: headerBasico()}"></header>
-	<div id="min-height" class="container">
-
-		<div>
-			Mesa: <span th:text="${comanda.getMesa.getId}"></span>
+	<div id="min-height3" class="container">
+	
+	<div class="container mt-3">
+		<div class="row"></div>
+		<div class="col-12">
+			<h1>Mesa: <span th:text="${comanda.getMesa.getId}"></span></h1>
 		</div>
-		<div>
-			Comanda: <span th:text="${comanda.getId}"></span>
+		<div class="col-12">
+			<h1>Comanda: <span th:text="${comanda.getId}"></span></h1>
 		</div>
+	</div>
+		
 		<div class="row">
 
 			<table class="table" style="margin-top: .85em; text-align: center;">
 				<thead style="background-color: #F5F5F5;">
 					<tr>
-						<th scope="col-2">Status</th>
-						<th scope="col-2">Hora do pedido</th>
-						<th scope="col-2">Observação</th>
-						<th scope="col-2">Quantidade</th>
-						<th scope="col-2">Pedido</th>
+						<th class="table-success" scope="col-2">Status</th>
+						<th class="table-success" scope="col-2">Hora do pedido</th>
+						<th class="table-success" scope="col-2">Observação</th>
+						<th class="table-success" scope="col-2">Quantidade</th>
+						<th class="table-success" scope="col-2">Pedido</th>
 					</tr>
 
 				</thead>
 
 				<tbody>
 					<tr th:each="pedido : ${pedidos}">
-						<td th:text="${pedido.status}">status</td>
-						<td th:text="${pedido.getHoraDoPedido().toLocalTime()}">hora do pedido</td>
-						<td th:text="${pedido.observacao}">observacao</td>
-						<td th:text="${pedido.quantidade}">quantidade</td>
-						<td th:text="${pedido.produto.nome}">produto id</td>
+						<td class="table-warning" th:text="${pedido.status}">status</td>
+						<td class="table-warning" th:text="${pedido.getHoraDoPedido().toLocalTime()}">hora do pedido</td>
+						<td class="table-warning" th:text="${pedido.observacao}">observacao</td>
+						<td class="table-warning" th:text="${pedido.quantidade}">quantidade</td>
+						<td class="table-warning" th:text="${pedido.produto.nome}">produto id</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 
 		<div class="row">
-			<a class="btn btn-secondary"
+			<a class="btn btn-success"
 				th:href="@{/garcons/pedidos/comanda/{id}/criar(id = ${id})}">Novo Pedido</a>
 		</div>
 		<br>
 		<div class="row">
-			<a class="btn btn-secondary"
+			<a class="btn btn-primary"
 				th:href="@{/garcons/comanda/{id}/caixa(id = ${id})}">Finalizar comanda</a>
 		</div>
 		<br>
 		<div class="col">
-			<a class="btn btn-secondary btn-sm" href="/garcons">Voltar</a>
+			<a class="btn btn-primary btn-sm" href="/garcons">Voltar</a>
 		</div>
 	</div>
 

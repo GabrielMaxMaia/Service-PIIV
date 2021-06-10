@@ -7,28 +7,29 @@
 <body>
 	<header th:replace="~{HeaderBasico :: headerBasico()}"></header>
 
-	<div id="min-height" class="jumbotron text-center">
+	<div id="min-height3" class="jumbotron text-center">
 		<div class="text-center">
 			<form th:object="${comanda}" action="/garcons/comanda" method="POST">
 				<div class="mb-3">
-					<label class="btn btn-secondary">Numero da Mesa</label> <select
-						class="btn btn-secondary dropdown-toggle" name="mesa">
+					<label class="btn btn-primary">Numero da Mesa</label> <select
+						class="btn btn-primary dropdown-toggle" name="mesa">
 						<option th:each="mesasV : ${mesa}" th:value="${mesasV.numero}"
 							th:text="${mesasV.numero}"></option>
 					</select>
 				</div>
-				<button class="btn btn-secondary" type="submit">Abrir
+				<button class="btn btn-primary" type="submit">Abrir
 					comanda</button>
 			</form>
 
 		</div>
-
-
-
-	</div>
+		<br>
 	<div class="col text-center">
-		<a class="btn btn-secondary btn-sm" href="javascript:history.back()">Voltar</a>
+		<a class="btn btn-primary btn-sm" href="javascript:history.back()">Voltar</a>
 	</div>
+
+
+	</div>
+	
 
 <footer th:replace="~{fragmentos :: footer()}"></footer>
 

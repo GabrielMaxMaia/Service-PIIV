@@ -6,7 +6,7 @@
 
 <body>
 	<header th:replace="~{HeaderBasico :: headerBasico()}"></header>
-	<div class="container">
+	<div id="min-height4" class="container">
 		<div class="col-12">
 			<table class="table" style="margin-top: .85em; text-align: center;">
 				<thead style="background-color: #F5F5F5;">
@@ -23,7 +23,7 @@
 
 				<tbody>
 				
-					<tr th:each="l : ${listar}" th:if="${l.verificaTempo() == 3}" style="background-color: red;;">
+					<tr th:each="l : ${listar}" th:if="${l.verificaTempo() == 3}" style="background-color: rgb(255, 53, 53);">
 
 						<th scope="row" th:text="${l.getId()}">id</th>
 						<td th:text="${l.nome}">Nome do Produto</td>
@@ -37,7 +37,7 @@
 						
 					</tr>
 					
-					<tr th:each="l : ${listar}" th:if="${l.verificaTempo() == 2}" style="background-color: yellow;">
+					<tr th:each="l : ${listar}" th:if="${l.verificaTempo() == 2}" style="background-color: rgb(255, 255, 106);">
 
 						<th scope="row" th:text="${l.getId()}">id</th>
 						<td th:text="${l.nome}">Nome do Produto</td>
@@ -51,7 +51,7 @@
 						
 					</tr>
 					
-					<tr th:each="l : ${listar}" th:if="${l.verificaTempo() == 1}" style="background-color: green;">
+					<tr th:each="l : ${listar}" th:if="${l.verificaTempo() == 1}" style="background-color: rgb(0, 255, 128);">
 
 						<th scope="row" th:text="${l.getId()}">id</th>
 						<td th:text="${l.nome}">Nome do Produto</td>
